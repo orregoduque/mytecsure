@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: black;
+  color:white;
+}
+
+nav {
+  display: flex;
+  margin: 0;
+  padding: 10px;
+  background-color: black;
+  color:white;
+}
+
+
+nav a:hover {
+  color:rgb(187, 206, 18);
+}

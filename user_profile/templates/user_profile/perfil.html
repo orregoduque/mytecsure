@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class = "container-fluid"> 
+    <div class="panel panel-default col-xs-8 col-xs-offset-2 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-6 col-lg-6 col-lg-offset-3">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h3 style="color: rgb(88, 105, 255)"><strong>{{ perfil.user|capfirst }}</strong></h3>
+        </div>
+      
+        <!-- List group -->
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Fecha Nacimiento: </strong> {{ perfil.cumpleanos_estudiante }}</li>
+            <li class="list-group-item"><strong>Genero:</strong> {{ perfil.gender}}</li>
+            <li class="list-group-item"><strong>Tipo de Sangre:</strong> {{ perfil.blood_group}}</li>
+            <li class="list-group-item"><strong>Nit: </strong> {{ perfil.nit_estudiante }}</li>
+            <li class="list-group-item"><strong>Email: </strong> {{ perfil.email_estudiante }}</li>
+            <li class="list-group-item"><strong>Direccion: </strong> {{ perfil.direccion_estudiante }}</li>
+            <li class="list-group-item"><strong>Barrio: </strong> {{ perfil.barrio_estudiante }}</li>
+            <li class="list-group-item"><strong>Comuna: </strong> {{ perfil.comuna_estudiante }}</li>
+            <li class="list-group-item"><strong>Grado: </strong> {{ perfil.grado_estudiante }}</li>
+            <li class="list-group-item"><strong>ID: </strong> {{ perfil.id_estudiante }}</li>
+            <li class="list-group-item"><strong>Acudiente: </strong> {{ perfil.nombre_acudiente }}</li>
+            <li class="list-group-item"><strong>Cedula Acudiente: </strong> {{ perfil.cedula_acudiente }}</li>
+            <li class="list-group-item"><strong>Celular Acudiente: </strong> {{ perfil.celular_acudiente }}</li>
+            <li class="list-group-item"><strong>Email Acudiente: </strong> {{ perfil.email_acudiente }}</li>
+            <li class="list-group-item"><strong>Trabajo Acudiente: </strong> {{ perfil.trabajo_acudiente }}</li>
+            <li class="list-group-item"><strong>Nombre Seguro: </strong> {{ perfil.identidad_seguro }}</li>
+            <li class="list-group-item"><strong>ID Seguro: </strong> {{ perfil.id_seguro }}</li>
+            <li class="list-group-item"><strong>Descripcion Seguro: </strong> {{ perfil.descripcion_seguro }}</li>
+            <li class="list-group-item"><strong>Condicion Especial: </strong> {{ perfil.condicion_especial }}</li>
+            <li class="list-group-item"><strong>Descripcion Condicion: </strong> {{ perfil.descripcion_condicion_especial }}</li>
+        </ul>
+      </div>
+</div>
+{% endblock %}
+
+
+
+
+     
+     
+     
+
+    

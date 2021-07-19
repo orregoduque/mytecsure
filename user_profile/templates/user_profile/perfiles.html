@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container-fluid ">
+    <div class="col-xs-8 col-xs-offset-2 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-6 col-lg-6 col-lg-offset-3">
+        <h3 style="color: rgb(88, 105, 255)"><strong>Perfiles</strong> </h3>
+    </div> 
+        <div>
+            {% for perfil in perfiles %}
+                        <div class="panel panel-default col-xs-8 col-xs-offset-2 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-6 col-lg-6 col-lg-offset-3">
+                            <div class="panel-heading ">
+                                <h3 style="color: rgb(88, 105, 255)"><strong>{{ perfil.nombre_estudiante|capfirst }} {{ perfil.apellido_estudiante|capfirst }} </strong></h3>
+                            </div>
+                            <!-- List group -->
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Fecha Nacimiento: </strong> {{ perfil.cumpleanos_estudiante }}</li>
+                                <li class="list-group-item"><strong>Genero:</strong> {{ perfil.gender}}</li>
+                                <li class="list-group-item"><strong>Nit: </strong> {{ perfil.nit_estudiante }}</li>
+                                <li class="list-group-item"><strong>Direccion: </strong> {{ perfil.direccion_estudiante }}</li>
+                                <li class="list-group-item"><strong>Grado: </strong> {{ perfil.grado_estudiante }}</li>
+                                <li class="list-group-item"><strong>ID: </strong> {{ perfil.id_estudiante }}</li>
+                                <li class="list-group-item"><strong>Acudiente: </strong> {{ perfil.nombre_acudiente }}</li>
+                                <li class="list-group-item"><strong>Celular Acudiente: </strong> {{ perfil.celular_acudiente }}</li>
+                                <li class="list-group-item"><strong>Nombre Seguro: </strong> {{ perfil.identidad_seguro }}</li>
+                                <li class="list-group-item"><strong>ID Seguro: </strong> {{ perfil.id_seguro }}</li>
+                                <li class="list-group-item"><strong>Descripcion Seguro: </strong> {{ perfil.descripcion_seguro }}</li>
+                                <li class="list-group-item"><strong>Condicion Especial: </strong> {{ perfil.condicion_especial }}</li>
+                                <li class="list-group-item"><strong>Descripcion Condicion: </strong> {{ perfil.descripcion_condicion_especial }}</li>
+                            </ul>
+                        </div>
+            {% endfor %}
+        </div>
+</div>
+{% endblock %}
