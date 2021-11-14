@@ -383,24 +383,98 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
     login_url = '/login/'
     redirect_field_name = 'account:login'
     paginate_by = 10
+    
+    
 
     def get(self, request, *args, **kwargs):
  
         search_query = request.GET.get('search_box', None)
         latlong = request.GET.get('latlong', None)
+        atencion = request.GET.get('atencion_submit',None)
+        ambulancia = request.GET.get('ambulancia_submit',None)
+        acudiente = request.GET.get('acudiente_submit',None)
+        print (ambulancia)
+        print (atencion)
+        print (acudiente)
         print(latlong)
         print(search_query)
         id_buscar = 2
-        if search_query == 'totti':
-            id_buscar = 3;
-        seguro = UserProfile.objects.get(user=id_buscar)
-        #print(seguro)
+
+        palabra = ""
+        ambulancia_name = ""
+        acudiente_name = ""
+        puntos_atencion = ""
+        imagen = ""
+        notas = ""
+        actividades = ""
+
+        if search_query == 'valentina':
+            id_buscar = 3
+            imagen = "../static/images/valentina.jpeg"
+        elif search_query == 'roberta':
+            id_buscar = 5
+            imagen = "../static/images/roberta.jpeg"
+        elif search_query == 'sebastian':
+            id_buscar = 4
+            imagen = "../static/images/sebastian.jpeg"
+
+        if id_buscar != 2:
+            usuario = UserProfile.objects.get(user=id_buscar)
+            ambulancia_name = usuario.identidad_seguro
+            acudiente_name = usuario.nombre_acudiente + " " + usuario.apellido_acudiente
+            print(f' esta es {usuario.identidad_seguro}')
+            notas = Nota.objects.filter(student_id=id_buscar).order_by('-date')
+            actividades = Prescription.objects.filter(student_id=id_buscar).order_by('-date')
+        else:
+            usuario = ""
+
+        if ambulancia_name == "Seguro Social":
+            ambulancia_name = "6640235"
+            puntos_atencion = "la flora, centenario"
+
+        elif ambulancia_name =='Colsanitas':
+            ambulancia_name = " 6640235"
+            puntos_atencion = "san pedro"
+
+        elif ambulancia_name == 'Coomeva':
+            ambulancia_name = " 6655145"
+            puntos_atencion = "quintas"
+
+        elif ambulancia_name == 'Seguro Social':
+            ambulancia_name = " 6641010"
+            puntos_atencion = "rousevelt"
+
+        elif ambulancia_name == 'Imbanaco':
+            ambulancia_name = " 6651010"
+            puntos_atencion = "ingenio"
+
+        else:
+            puntos_atencion = ""
+
+        if acudiente == "None":
+            acudiente_name = ""
+        print(acudiente_name)
+
+        if ambulancia == "None":
+            ambulancia_name = ""
+        print(ambulancia_name)
+ 
+        print(usuario)
+
+        print(notas)
+        print(actividades)
         lunes = 2
         martes = 3
         context = {
             'lunes' : lunes,
             'martes' : martes,
-            'seguro' : seguro,
+            'usuario' : usuario,
+            'imagen' : imagen,
+            'acudiente_name' : acudiente_name,
+            'ambulancia_name' : ambulancia_name,
+            'puntos_atencion' : puntos_atencion,
+            'notas' : notas,
+            'actividades' : actividades,
         }
         return render(request, 'appointment/urgencia.html', context)
 

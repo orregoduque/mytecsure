@@ -11,36 +11,66 @@
 
 {% block content %}
 <div class="container-fluid">
-
-    
-
-
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
         <form type="get" action="." style="margin: 0">
             <input  id="search_box" type="text" name="search_box"  placeholder="Nombre Estudiante" >
             <button id="search_submit" type="submit" class="btn btn-primary pull-center">Buscar</button>
         </form>
-        
     </div>
 
+    {% if usuario != "" %}
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
         <p>
             <br>
             <br>
-            Resultado:
+            <b>Nombre:</b>
+            {{ usuario.user}} {{ usuario.apellido_estudiante}}
             <br>
+            <b>Condiciones Especiales:</b>
+            {{ usuario.descripcion_condicion_especial}}
             <br>
+            <b>Acudiente:</b>
+            {{ usuario.nombre_acudiente}} {{ usuario.apellido_acudiente}}
             <br>
-            {{ seguro.user}}
-            <br>
-            <br>
+        </p>
+    </div>
+
+
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <img src={{imagen}} alt="Photo">
+    </div>
+    
+
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <form type="acudiente_get" action="." style="margin: 0">
+            <button id="acudiente_submit" type="submit" name='acudiente_submit' class="btn btn-primary pull-center" value='acudiente {{ usuario.user}} ' >Llamar acudiente</button>
+            {{ usuario.celular_acudiente}} 
+        </form>
+    </div>
+    
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <form type="get" action="." style="margin: 0">
+            <button id="ambulancia_submit" type="submit" name='ambulancia_submit' class="btn btn-primary pull-center" value = 'ambulancia {{ usuario.user}} '>Llamar ambulancia</button>
+            {{ ambulancia_name}} 
+            <p>
+                <br>
+                <b>Convenio:</b> {{usuario.identidad_seguro}}
+                <br>
+                <b>NIT estudiante:</b> {{usuario.nit_estudiante}}
+                <br>
+                <b>ID del seguro del estudiante:</b> {{usuario.id_seguro}}
+            </p>
+        </form>
+    </div>
+
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <p>
+            <b>Puntos de atencion:</b>  {{puntos_atencion}}
         </p>
     </div>
     
 
-
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
-
             <button id = "find-me" class="btn btn-primary pull-center">Obtener Ubicacion</button>
             <br>
             <p id = "status"></p>
@@ -48,6 +78,24 @@
     </div>
 
 
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <p>
+            <b>ultimas notas:</b>
+            {% for nota in notas %}
+            -{{nota.actividad}}
+            {% endfor %}
+        </p>
+    </div>
+
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <p>
+            <b>ultimas actividades:</b>
+            {% for actividad in actividades %}
+            -{{actividad.sintomas}}
+            {% endfor %}
+        </p>
+    </div>
+    {% endif %}
 
 </div>
 
@@ -66,10 +114,10 @@
             const longitude = position.coords.longitude;
 
             status.textContent = '';
-            mapLink.href = `http://127.0.0.1:8000/urgencia/?latlong=${latitude}${longitude}`;
+            mapLink.href = `https://www.google.com/maps?q=${latitude},${longitude}`;
             mapLink.textContent = `Haz click aqui para buscar ubicacion de: Latitud ${latitude} °, Longitud ${longitude} °`;
         }
-
+        
         function error() {
             status.textContent = 'Unable to retrieve your location';
         }
@@ -84,6 +132,8 @@
         }
 
         document.querySelector('#find-me').addEventListener('click', geoFindMe);
+
+        
 
     </script>
 

@@ -24,11 +24,7 @@
     						{% if user.is_authenticated %}
                       {% if user.is_director %}
                       <!-- director's dashboard -->
-                      <li><a href="{% url 'appointment:director-urgencia' %}" style="color: rgb(255, 255, 255)">Urgencia</a></li>                 
-                      <li><a href="{% url 'appointment:doc-prescriptions' %}" style="color: rgb(255, 255, 255)">Actividades</a></li>
-                      <li><a href="{% url 'appointment:director-notas' %}" style="color: rgb(255, 255, 255)" >Notas</a></li>
-                      <li><a href="{% url 'appointment:director-eventos' %}" style="color: rgb(255, 255, 255)" >Eventos</a></li>
-                      <li><a href="{% url 'user_profile:PerfilListView' %}" style="color: rgb(255, 255, 255)" >Perfiles</a></li>
+                      <li><a href="{% url 'appointment:director-urgencia' %}" style="color: rgb(255, 255, 255)">Consultar Estudiante</a></li>
                       <li><a href="http://127.0.0.1:8000/admin/" style="color: rgb(255, 255, 255)" >Admin</a></li>
     						      <li><a href="{% url 'account:logout' %}" ><button class="btn btn-warning btn-sm" style="color: rgb(255, 255, 255)">Log Out</button></a></li>
                       {% endif %}
