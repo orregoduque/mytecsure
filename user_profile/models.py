@@ -18,6 +18,7 @@ BLOOD_GROUPS = [
     ('B+', 'B+'),
     ('AB-', 'AB-'),
     ('AB+', 'AB+'),
+    ('SD', 'SD'),
 ]
 
 GRADO = [
@@ -40,6 +41,33 @@ SEGURO = [
     ('Seguro Social', 'Seguro Social'),
     ('Imbanaco', 'Imbanaco'),
     ('Ninguno', 'Ninguno'),
+    ('ASMESALUD', 'ASMESALUD'),
+    ('CAFESALUD', 'CAFESALUD'),
+    ('CAPRECOM' , 'CAPRECOM'),
+    ('CEDIMA' , 'CEDIMA'),
+    ('COLSANITAS' , 'COLSANITAS'),
+    ('COMFAMILIAR', 'COMFAMILIAR'),
+    ('COMFENALCO' , 'COMFENALCO'),
+    ('COOSALUD' , 'COOSALUD'),
+    ('COOMEVA' , 'COOMEVA'),
+    ('COSMITET' , 'COSMITET'),
+    ('CRUZ BLANCA', 'CRUZ BLANCA'),
+    ('EMAVI' , 'EMAVI'),
+    ('EMSANAR' , 'EMSANAR'),
+    ('LA POLICIA', 'LA POLICIA'),
+    ('MEDIMAS' , 'MEDIMAS'),
+    ('NUEVA EPS', 'NUEVA EPS'),
+    ('P.N.C' , 'P.N.C'),
+    ('PONAL', 'PONAL'),
+    ('PREVISORA', 'PREVISORA'),
+    ('S.O.S' , 'S.O.S'),
+    ('SALUD TOTAL' , 'SALUD TOTAL'),
+    ('SALUDCOOP' , 'SALUDCOOP'),
+    ('SANIDAD MILITAR' , 'SANIDAD MILITAR'),
+    ('SANITAS' , 'SANITAS'),
+    ('SIN DEFINIR' , 'SIN DEFINIR'),
+    ('SISBEN' , 'SISBEN'),
+    ('SURAMERICANA' , 'SURAMERICANA'),
 ]
 
 class UserProfile(models.Model):
@@ -69,7 +97,7 @@ class UserProfile(models.Model):
     trabajo_acudiente = models.CharField(max_length=50, blank=True,null=True)
     celular_acudiente = models.CharField(max_length=50, blank=True,null=True)
     id_seguro = models.CharField(max_length=50, blank=True,null=True)
-    identidad_seguro = models.CharField(choices=SEGURO, max_length=13, blank=True , default='Coomeva')
+    identidad_seguro = models.CharField(choices=SEGURO, max_length=15, blank=True , default='Coomeva')
     descripcion_seguro = models.CharField(max_length=50, blank=True,null=True)
     condicion_especial = models.CharField(max_length=50, blank=True,null=True)
     descripcion_condicion_especial = models.CharField(max_length=50, blank=True,null=True)

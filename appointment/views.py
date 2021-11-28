@@ -429,23 +429,23 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
         else:
             usuario = ""
 
-        if ambulancia_name == "Seguro Social":
+        if ambulancia_name == "SALUD TOTAL":
             ambulancia_name = "6640235"
             puntos_atencion = "la flora, centenario"
 
-        elif ambulancia_name =='Colsanitas':
+        elif ambulancia_name =='COLSANITAS':
             ambulancia_name = " 6640235"
             puntos_atencion = "san pedro"
 
-        elif ambulancia_name == 'Coomeva':
+        elif ambulancia_name == 'COOMEVA':
             ambulancia_name = " 6655145"
             puntos_atencion = "quintas"
 
-        elif ambulancia_name == 'Seguro Social':
+        elif ambulancia_name == 'COMFENALCO':
             ambulancia_name = " 6641010"
             puntos_atencion = "rousevelt"
 
-        elif ambulancia_name == 'Imbanaco':
+        elif ambulancia_name == 'EMSANAR':
             ambulancia_name = " 6651010"
             puntos_atencion = "ingenio"
 
