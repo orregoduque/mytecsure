@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'user_profile.apps.UserProfileConfig',
     'appointment.apps.AppointmentConfig',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +120,8 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_REDIRECT_URL = "account:home"
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

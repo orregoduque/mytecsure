@@ -33,11 +33,11 @@ GRADO = [
     ('09', '09'),
     ('10', '10'),
     ('11', '11'),
-    ('01A', '01 ACADEMICO'),
-    ('02A', '02 ACADEMICO'),
-    ('03A', '03 ACADEMICO'),
-    ('04A', '04 ACADEMICO'),
-    ('05A', '05 ACADEMICO'),
+    ('01 ACADEMICO', '01 ACADEMICO'),
+    ('02 ACADEMICO', '02 ACADEMICO'),
+    ('03 ACADEMICO', '03 ACADEMICO'),
+    ('04 ACADEMICO', '04 ACADEMICO'),
+    ('05 ACADEMICO', '05 ACADEMICO'),
 ]
 
 SECCION = [
@@ -102,14 +102,23 @@ class UserProfile(models.Model):
     tipodoc_estudiante = models.CharField(choices=TIPO_DOCUMENTO, max_length=4, blank=True , default='T.I')
     nit_estudiante = models.CharField(max_length=50, blank=True,null=True)
     cumpleanos_estudiante = models.CharField(max_length=50, blank=True,null=True)
-    nombre_papa = models.CharField(max_length=50, blank=True,null=True)
     direccion_estudiante = models.CharField(max_length=50, blank=True,null=True)
-    telefono_estudiante = models.CharField(max_length=50, blank=True,null=True)
-    direccion_papa = models.CharField(max_length=50, blank=True,null=True)
-    grado_estudiante = models.CharField(choices=GRADO, max_length=3, blank=True , default='01')
+    grado_estudiante = models.CharField(choices=GRADO, max_length=12, blank=True , default='01')
     seccion_estudiante = models.CharField(choices=SECCION, max_length=1, blank=True , default='1')
     jornada_estudiante = models.CharField(choices=JORNADA, max_length=6, blank=True , default='MANANA')
     id_estudiante = models.CharField(max_length=50, blank=True,null=True)
+    telefono_estudiante = models.CharField(max_length=50, blank=True,null=True)
+    id_seguro = models.CharField(max_length=50, blank=True,null=True)
+    identidad_seguro = models.CharField(choices=SEGURO, max_length=15, blank=True , default='Coomeva')
+    descripcion_seguro = models.CharField(max_length=50, blank=True,null=True)
+    condicion_especial = models.CharField(max_length=50, blank=True,null=True)
+    descripcion_condicion_especial = models.CharField(max_length=50, blank=True,null=True)
+    nombre_papa = models.CharField(max_length=50, blank=True,null=True)
+    direccion_papa = models.CharField(max_length=50, blank=True,null=True)
+    ocupacion_papa = models.CharField(max_length=50, blank=True,null=True)
+    nombre_mama = models.CharField(max_length=50, blank=True,null=True)
+    direccion_mama = models.CharField(max_length=50, blank=True,null=True)
+    ocupacion_mama = models.CharField(max_length=50, blank=True,null=True)
     nombre_acudiente = models.CharField(max_length=50, blank=True,null=True)
     nombre_2_acudiente = models.CharField(max_length=50, blank=True,null=True)
     apellido_acudiente = models.CharField(max_length=50, blank=True,null=True)
@@ -119,26 +128,9 @@ class UserProfile(models.Model):
     email_acudiente = models.CharField(max_length=50, blank=True,null=True)
     direccion_acudiente = models.CharField(max_length=50, blank=True,null=True)
     parentesco_acudiente = models.CharField(max_length=50, blank=True,null=True)
-    ocupacion_papa = models.CharField(max_length=50, blank=True,null=True)
-    nombre_mama = models.CharField(max_length=50, blank=True,null=True)
-    direccion_mama = models.CharField(max_length=50, blank=True,null=True)
-    ocupacion_mama = models.CharField(max_length=50, blank=True,null=True)
     celular_acudiente = models.CharField(max_length=50, blank=True,null=True)
-    id_seguro = models.CharField(max_length=50, blank=True,null=True)
-    identidad_seguro = models.CharField(choices=SEGURO, max_length=15, blank=True , default='Coomeva')
-    descripcion_seguro = models.CharField(max_length=50, blank=True,null=True)
-    condicion_especial = models.CharField(max_length=50, blank=True,null=True)
-    descripcion_condicion_especial = models.CharField(max_length=50, blank=True,null=True)
 
-    """
    
-    seguro
-    alergias
-    cirugias
-    medicamentos
-     """
-   
-
     class Meta:
         ordering = ('-id',)
 
@@ -155,14 +147,23 @@ class UserProfile(models.Model):
         self.tipodoc_estudiante , 
         self.nit_estudiante , 
         self.cumpleanos_estudiante ,
-        self.nombre_papa,
         self.direccion_estudiante, 
-        self.telefono_estudiante , 
-        self.direccion_papa, 
         self.grado_estudiante,
         self.seccion_estudiante, 
         self.jornada_estudiante, 
         self.id_estudiante,
+        self.telefono_estudiante , 
+        self.id_seguro , 
+        self.identidad_seguro ,
+        self.descripcion_seguro , 
+        self.condicion_especial  , 
+        self.descripcion_condicion_especial,
+        self.nombre_papa,
+        self.direccion_papa, 
+        self.ocupacion_papa,
+        self.nombre_mama , 
+        self.direccion_mama,
+        self.ocupacion_mama , 
         self.nombre_acudiente , 
         self.nombre_2_acudiente , 
         self.apellido_acudiente, 
@@ -172,14 +173,6 @@ class UserProfile(models.Model):
         self.email_acudiente , 
         self.parentesco_acudiente , 
         self.direccion_acudiente, 
-        self.ocupacion_papa, 
-        self.nombre_mama , 
-        self.direccion_mama,
-        self.ocupacion_mama , 
-        self.celular_acudiente, 
-        self.id_seguro , 
-        self.identidad_seguro ,
-        self.descripcion_seguro , 
-        self.condicion_especial  , 
-        self.descripcion_condicion_especial )
+        self.celular_acudiente
+         )
 
