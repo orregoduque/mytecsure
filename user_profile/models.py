@@ -22,25 +22,44 @@ BLOOD_GROUPS = [
 ]
 
 GRADO = [
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-    ('5', '5'),
-    ('6', '6'),
-    ('7', '7'),
-    ('8', '8'),
-    ('9', '9'),
+    ('01', '01'),
+    ('02', '02'),
+    ('03', '03'),
+    ('04', '04'),
+    ('05', '05'),
+    ('06', '06'),
+    ('07', '07'),
+    ('08', '08'),
+    ('09', '09'),
     ('10', '10'),
     ('11', '11'),
+    ('01A', '01 ACADEMICO'),
+    ('02A', '02 ACADEMICO'),
+    ('03A', '03 ACADEMICO'),
+    ('04A', '04 ACADEMICO'),
+    ('05A', '05 ACADEMICO'),
+]
+
+SECCION = [
+    ('1','01'),
+    ('2','02'),
+    ('3', '03'),
+]
+
+JORNADA = [
+    ('MANANA', 'MANANA'),
+    ('TARDE' , 'TARDE'),
+]
+
+TIPO_DOCUMENTO = [
+    ('NIP', 'NIP'),
+    ('NUIP', 'NUIP'),
+    ('OTRO', 'OTRO'),
+    ('R.C', 'R.C'),
+    ('T.I', 'T.I'),
 ]
 
 SEGURO = [
-    ('Colsanitas', 'Colsanitas'),
-    ('Coomeva', 'Coomeva'),
-    ('Seguro Social', 'Seguro Social'),
-    ('Imbanaco', 'Imbanaco'),
-    ('Ninguno', 'Ninguno'),
     ('ASMESALUD', 'ASMESALUD'),
     ('CAFESALUD', 'CAFESALUD'),
     ('CAPRECOM' , 'CAPRECOM'),
@@ -77,24 +96,33 @@ class UserProfile(models.Model):
     blood_group = models.CharField(choices=BLOOD_GROUPS, max_length=3, blank=True)
     status = models.CharField(choices=[('Active', 'Active'), ('Inactive', 'Inactive')], null=True, blank=True, max_length=8)
     nombre_estudiante = models.CharField(max_length=50 , blank=True ,null=True)
+    nombre_2_estudiante = models.CharField(max_length=50 , blank=True ,null=True)
     apellido_estudiante = models.CharField(max_length=50, blank=True,null=True)
+    apellido_2_estudiante = models.CharField(max_length=50, blank=True,null=True)
+    tipodoc_estudiante = models.CharField(choices=TIPO_DOCUMENTO, max_length=4, blank=True , default='T.I')
     nit_estudiante = models.CharField(max_length=50, blank=True,null=True)
     cumpleanos_estudiante = models.CharField(max_length=50, blank=True,null=True)
-    email_estudiante = models.CharField(max_length=50, blank=True,null=True)
+    nombre_papa = models.CharField(max_length=50, blank=True,null=True)
     direccion_estudiante = models.CharField(max_length=50, blank=True,null=True)
-    barrio_estudiante = models.CharField(max_length=50, blank=True,null=True)
-    comuna_estudiante = models.CharField(max_length=50, blank=True,null=True)
-    grado_estudiante = models.CharField(choices=GRADO, max_length=2, blank=True , default='1')
+    telefono_estudiante = models.CharField(max_length=50, blank=True,null=True)
+    direccion_papa = models.CharField(max_length=50, blank=True,null=True)
+    grado_estudiante = models.CharField(choices=GRADO, max_length=3, blank=True , default='01')
+    seccion_estudiante = models.CharField(choices=SECCION, max_length=1, blank=True , default='1')
+    jornada_estudiante = models.CharField(choices=JORNADA, max_length=6, blank=True , default='MANANA')
     id_estudiante = models.CharField(max_length=50, blank=True,null=True)
     nombre_acudiente = models.CharField(max_length=50, blank=True,null=True)
+    nombre_2_acudiente = models.CharField(max_length=50, blank=True,null=True)
     apellido_acudiente = models.CharField(max_length=50, blank=True,null=True)
+    apellido_2_acudiente = models.CharField(max_length=50, blank=True,null=True)
     cedula_acudiente = models.CharField(max_length=50, blank=True,null=True)
     cumpleanos_acudiente = models.CharField(max_length=50, blank=True,null=True)
     email_acudiente = models.CharField(max_length=50, blank=True,null=True)
     direccion_acudiente = models.CharField(max_length=50, blank=True,null=True)
-    barrio_acudiente = models.CharField(max_length=50, blank=True,null=True)
-    comuna_acudiente = models.CharField(max_length=50, blank=True,null=True)
-    trabajo_acudiente = models.CharField(max_length=50, blank=True,null=True)
+    parentesco_acudiente = models.CharField(max_length=50, blank=True,null=True)
+    ocupacion_papa = models.CharField(max_length=50, blank=True,null=True)
+    nombre_mama = models.CharField(max_length=50, blank=True,null=True)
+    direccion_mama = models.CharField(max_length=50, blank=True,null=True)
+    ocupacion_mama = models.CharField(max_length=50, blank=True,null=True)
     celular_acudiente = models.CharField(max_length=50, blank=True,null=True)
     id_seguro = models.CharField(max_length=50, blank=True,null=True)
     identidad_seguro = models.CharField(choices=SEGURO, max_length=15, blank=True , default='Coomeva')
@@ -115,10 +143,43 @@ class UserProfile(models.Model):
         ordering = ('-id',)
 
     def __str__(self):
-        return "{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}".format(self.user, self.name , self.gender, 
-        self.blood_group , self.status , self.nombre_estudiante, self.apellido_estudiante, self.nit_estudiante , self.cumpleanos_estudiante ,
-        self.email_estudiante,self.direccion_estudiante, self.barrio_estudiante , self.comuna_estudiante, self.grado_estudiante, self.id_estudiante,
-        self.nombre_acudiente , self.apellido_acudiente, self.cedula_acudiente , self.cumpleanos_acudiente , self.email_acudiente , 
-        self.direccion_acudiente, self.barrio_acudiente, self.comuna_acudiente , self.trabajo_acudiente , self.celular_acudiente, 
-        self.id_seguro , self.identidad_seguro ,self.descripcion_seguro , self.condicion_especial  , self.descripcion_condicion_especial )
+        return "{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}".format(self.user, 
+        self.name , 
+        self.gender, 
+        self.blood_group, 
+        self.status, 
+        self.nombre_estudiante, 
+        self.nombre_2_estudiante, 
+        self.apellido_estudiante, 
+        self.apellido_2_estudiante, 
+        self.tipodoc_estudiante , 
+        self.nit_estudiante , 
+        self.cumpleanos_estudiante ,
+        self.nombre_papa,
+        self.direccion_estudiante, 
+        self.telefono_estudiante , 
+        self.direccion_papa, 
+        self.grado_estudiante,
+        self.seccion_estudiante, 
+        self.jornada_estudiante, 
+        self.id_estudiante,
+        self.nombre_acudiente , 
+        self.nombre_2_acudiente , 
+        self.apellido_acudiente, 
+        self.apellido_2_acudiente, 
+        self.cedula_acudiente , 
+        self.cumpleanos_acudiente , 
+        self.email_acudiente , 
+        self.parentesco_acudiente , 
+        self.direccion_acudiente, 
+        self.ocupacion_papa, 
+        self.nombre_mama , 
+        self.direccion_mama,
+        self.ocupacion_mama , 
+        self.celular_acudiente, 
+        self.id_seguro , 
+        self.identidad_seguro ,
+        self.descripcion_seguro , 
+        self.condicion_especial  , 
+        self.descripcion_condicion_especial )
 
