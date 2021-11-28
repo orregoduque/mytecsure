@@ -43,15 +43,15 @@
 
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
         <form type="acudiente_get" action="." style="margin: 0">
-            <button id="acudiente_submit" type="submit" name='acudiente_submit' class="btn btn-primary pull-center" value='acudiente {{ usuario.user}} ' >Llamar acudiente</button>
-            {{ usuario.celular_acudiente}} 
+            <a href="tel:{{ usuario.celular_acudiente}} ">Llamar acudiente</a>
+            <a href="tel:{{ usuario.celular_acudiente}} ">{{ usuario.celular_acudiente}} </a>
         </form>
     </div>
     
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
         <form type="get" action="." style="margin: 0">
-            <button id="ambulancia_submit" type="submit" name='ambulancia_submit' class="btn btn-primary pull-center" value = 'ambulancia {{ usuario.user}} '>Llamar ambulancia</button>
-            {{ ambulancia_name}} 
+            <a href="tel:{{ ambulancia_name}}  ">Llamar ambulancia</a>
+            <a href="tel:{{ ambulancia_name}}  ">{{ ambulancia_name}}  </a>
             <p>
                 <br>
                 <b>Convenio:</b> {{usuario.identidad_seguro}}
@@ -67,6 +67,9 @@
         <p>
             <b>Puntos de atencion:</b>  {{puntos_atencion}}
         </p>
+    </div>
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <img src={{mapa_cali}} alt="Photo">
     </div>
     
 

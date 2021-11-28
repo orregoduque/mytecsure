@@ -407,6 +407,7 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
         imagen = ""
         notas = ""
         actividades = ""
+        mapa_cali = "../static/images/mapa_cali.png"
 
         if search_query == 'valentina':
             id_buscar = 3
@@ -475,6 +476,7 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
             'puntos_atencion' : puntos_atencion,
             'notas' : notas,
             'actividades' : actividades,
+            'mapa_cali': mapa_cali,
         }
         return render(request, 'appointment/urgencia.html', context)
 
