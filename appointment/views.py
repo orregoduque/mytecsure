@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from user_profile.models import UserProfile
+from account.models import User
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django import forms
@@ -399,8 +400,26 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
         print(latlong)
         print(search_query)
         id_buscar = 2
+        acumulado = []
+        nombres =  list(search_query)
+        cuenta = 0
+        for id in nombres:
+            if(id == ' '):
+                acumulado.append('_') 
+            else:
+                acumulado.append(nombres[cuenta])
+            cuenta += 1
 
-        palabra = ""
+        nombre_completo = ''.join(acumulado)
+        print(nombre_completo)
+
+        try:
+            usuarios = User.objects.get(username=nombre_completo)
+        except:
+            usuarios = User.objects.get(username="valentina")
+        print(usuarios.id)
+        id_buscar =usuarios.id
+
         ambulancia_name = ""
         acudiente_name = ""
         puntos_atencion = ""
@@ -409,15 +428,7 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
         actividades = ""
         mapa_cali = "../static/images/mapa_cali.png"
 
-        if search_query == 'valentina':
-            id_buscar = 3
-            imagen = "../static/images/valentina.jpeg"
-        elif search_query == 'roberta':
-            id_buscar = 5
-            imagen = "../static/images/roberta.jpeg"
-        elif search_query == 'sebastian':
-            id_buscar = 4
-            imagen = "../static/images/sebastian.jpeg"
+
 
         if id_buscar != 2:
             usuario = UserProfile.objects.get(user=id_buscar)

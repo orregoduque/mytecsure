@@ -13,10 +13,46 @@
 <div class="container-fluid">
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
         <form type="get" action="." style="margin: 0">
-            <input  id="search_box" type="text" name="search_box"  placeholder="Nombre Estudiante" >
+            <input  id="search_box" onkeyup="search_animal()" type="text" name="search_box"  placeholder="Nombre Estudiante" >
             <button id="search_submit" type="submit" class="btn btn-primary pull-center">Buscar</button>
         </form>
     </div>
+
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">            
+            <!-- ordered list -->
+            <ol id='list'>
+                <li class="animals">NICOLE AGUJA OCAMPO</li>
+                <li class="animals">SARAY BASTO BEJARANO</li>
+                <li class="animals">LAUREN SOFIA BEDOYA MONTOYA</li>
+                <li class="animals">NHICOLA CAICEDO AYALA</li>
+                <li class="animals">IVETH CAROLINA CAICEDO MOSQUERA</li>
+                <li class="animals">DIEGO FERNANDO CHAVARRO CORREA</li>
+                <li class="animals">NICOLAS CORREA BEDOYA</li>
+                <li class="animals">BRAYAN STIVEN DIOSA	</li>
+                <li class="animals">DAYANN LIZETH DUARTE BOLAÑOS</li>
+                <li class="animals">JHONIER DAVID ERAZO MARTINEZ</li>
+                <li class="animals">GABRIELA ESTUPIÑAN PAYAN</li>
+                <li class="animals">HELLEN DAHYAN GALEANO ZULUAICA</li>
+                <li class="animals">JUAN FELIPE GALINDO RUEDA</li>
+                <li class="animals">NICOLAS GARCIA FLOREZ</li>
+                <li class="animals">VALERY THALIANA GONZALEZ MANZANO</li>
+                <li class="animals">MARLON ALEXIS ILES MONTERO</li>
+                <li class="animals">MIGUEL ANGEL LOPEZ CAMPO</li>
+                <li class="animals">JUAN JOSE LOPEZ VILLEGAS</li>
+                <li class="animals">JULIANA MURIEL VANEGAS</li>
+                <li class="animals">JUAN PABLO OROBIO YEPES</li>
+                <li class="animals">SAMIR FERNANDO RIASCOS VALENCIA</li>
+                <li class="animals">ANDRES FELIPE SANCHEZ CUESTA</li>
+                <li class="animals">AZLANTH DAVID SARRIA BONILLA</li>
+                <li class="animals">JHONNY SANTIAGO TENORIO GUERRERO</li>
+                <li class="animals">HEIDY TATIANA VALENCIA PERLAZA</li>
+                <li class="animals">LISETH YULIANA ZUÑIGA SINISTERRA</li>
+            </ol>
+            
+            <!-- linking javascript -->
+            <script src="./animals.js"></script>
+    </div>
+
 
     {% if usuario != "" %}
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
@@ -135,6 +171,23 @@
         }
 
         document.querySelector('#find-me').addEventListener('click', geoFindMe);
+
+        function search_animal() 
+        {
+            
+            let input = document.getElementById('search_box').value
+            input=input.toLowerCase();
+            let x = document.getElementsByClassName('animals');
+            
+            for (i = 0; i < x.length; i++) { 
+                if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                    x[i].style.display="none";
+                }
+                else {
+                    x[i].style.display="list-item";                 
+                }
+            }
+        }
 
         
 
