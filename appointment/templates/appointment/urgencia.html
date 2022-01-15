@@ -60,13 +60,24 @@
             <br>
             <br>
             <b>Nombre:</b>
-            {{ usuario.user}} {{ usuario.apellido_estudiante}}
+            {{ usuario.nombre_estudiante}} {{ usuario.nombre_2_estudiante}} {{ usuario.apellido_estudiante}} {{ usuario.apellido_2_estudiante}}
+            <br>
+            <b>Fecha de nacimiento:</b>
+            {{ usuario.cumpleanos_estudiante}}
+            <br>
+            <b>Grado:</b> {{ usuario.grado_estudiante}} - <b>Seccion:</b> {{ usuario.seccion_estudiante}}
+            <br>
+            <b>Tipo de sangre:</b>
+            {{ usuario.blood_group}}
             <br>
             <b>Condiciones Especiales:</b>
             {{ usuario.descripcion_condicion_especial}}
             <br>
             <b>Acudiente:</b>
             {{ usuario.nombre_acudiente}} {{ usuario.apellido_acudiente}}
+            <br>
+            <b>Parentesco:</b>
+            {{ usuario.parentesco_acudiente}}
             <br>
         </p>
     </div>
@@ -76,7 +87,15 @@
         <img src={{imagen}} alt="Photo">
     </div>
     
-
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <p>
+            <br>
+            <b>Convenio:</b> {{usuario.identidad_seguro}}
+            <br>
+            <b>ID estudiante:</b> {{usuario.nit_estudiante}}
+            <br>
+        </p>
+    </div>
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
         <form type="acudiente_get" action="." style="margin: 0">
             <a href="tel:{{ usuario.celular_acudiente}} ">Llamar acudiente</a>
@@ -88,16 +107,11 @@
         <form type="get" action="." style="margin: 0">
             <a href="tel:{{ ambulancia_name}}  ">Llamar ambulancia</a>
             <a href="tel:{{ ambulancia_name}}  ">{{ ambulancia_name}}  </a>
-            <p>
-                <br>
-                <b>Convenio:</b> {{usuario.identidad_seguro}}
-                <br>
-                <b>NIT estudiante:</b> {{usuario.nit_estudiante}}
-                <br>
-                <b>ID del seguro del estudiante:</b> {{usuario.id_seguro}}
-            </p>
         </form>
     </div>
+
+            
+
 
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
         <p>

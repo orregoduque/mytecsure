@@ -389,26 +389,26 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
  
-        search_query = request.GET.get('search_box', None)
+        search_query = request.GET.get('search_box', 'nada')
         latlong = request.GET.get('latlong', None)
         atencion = request.GET.get('atencion_submit',None)
         ambulancia = request.GET.get('ambulancia_submit',None)
-        acudiente = request.GET.get('acudiente_submit',None)
-        print (ambulancia)
-        print (atencion)
-        print (acudiente)
-        print(latlong)
+        #print (ambulancia)
+        #print (atencion)
+        #print (acudiente)
+        #print(latlong)
         print(search_query)
         id_buscar = 2
         acumulado = []
-        nombres =  list(search_query)
-        cuenta = 0
-        for id in nombres:
-            if(id == ' '):
-                acumulado.append('_') 
-            else:
-                acumulado.append(nombres[cuenta])
-            cuenta += 1
+        if(search_query != 'None'):
+            nombres =  list(search_query)
+            cuenta = 0
+            for id in nombres:
+                if(id == ' '):
+                    acumulado.append('_') 
+                else:
+                    acumulado.append(nombres[cuenta])
+                cuenta += 1
 
         nombre_completo = ''.join(acumulado)
         print(nombre_completo)
@@ -421,68 +421,46 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
         id_buscar =usuarios.id
 
         ambulancia_name = ""
-        acudiente_name = ""
         puntos_atencion = ""
         imagen = ""
         notas = ""
         actividades = ""
         mapa_cali = "../static/images/mapa_cali.png"
 
-
-
         if id_buscar != 2:
             usuario = UserProfile.objects.get(user=id_buscar)
             ambulancia_name = usuario.identidad_seguro
-            acudiente_name = usuario.nombre_acudiente + " " + usuario.apellido_acudiente
-            print(f' esta es {usuario.identidad_seguro}')
             notas = Nota.objects.filter(student_id=id_buscar).order_by('-date')
             actividades = Prescription.objects.filter(student_id=id_buscar).order_by('-date')
+            imagen = "../static/images/valentina.jpeg"
+
+            ############################
+            #actualiza quien y cuando busco el perfil, por deafult tiene que estar ';' 
+            ###########################
+            now = datetime.datetime.now()
+            now = str(now)
+            ahora = now.split(' ')
+            hora = ahora[1].split('.')
+
+            toUpdate = usuario.busqueda 
+            toUpdate = toUpdate + ' ' + str(ahora[0]) + ' ' + str(hora[0]) + ' ' + str(request.user)+ ' ; ' 
+            UserProfile.objects.filter(user=id_buscar).update(busqueda=str(toUpdate))
+            
+            
         else:
             usuario = ""
 
         if ambulancia_name == "SALUD TOTAL":
             ambulancia_name = "6640235"
             puntos_atencion = "la flora, centenario"
-
-        elif ambulancia_name =='COLSANITAS':
-            ambulancia_name = " 6640235"
-            puntos_atencion = "san pedro"
-
-        elif ambulancia_name == 'COOMEVA':
-            ambulancia_name = " 6655145"
-            puntos_atencion = "quintas"
-
-        elif ambulancia_name == 'COMFENALCO':
-            ambulancia_name = " 6641010"
-            puntos_atencion = "rousevelt"
-
-        elif ambulancia_name == 'EMSANAR':
-            ambulancia_name = " 6651010"
-            puntos_atencion = "ingenio"
-
         else:
             puntos_atencion = ""
-
-        if acudiente == "None":
-            acudiente_name = ""
-        print(acudiente_name)
-
         if ambulancia == "None":
             ambulancia_name = ""
-        print(ambulancia_name)
- 
-        print(usuario)
 
-        print(notas)
-        print(actividades)
-        lunes = 2
-        martes = 3
         context = {
-            'lunes' : lunes,
-            'martes' : martes,
             'usuario' : usuario,
             'imagen' : imagen,
-            'acudiente_name' : acudiente_name,
             'ambulancia_name' : ambulancia_name,
             'puntos_atencion' : puntos_atencion,
             'notas' : notas,

@@ -129,13 +129,14 @@ class UserProfile(models.Model):
     direccion_acudiente = models.CharField(max_length=50, blank=True,null=True)
     parentesco_acudiente = models.CharField(max_length=50, blank=True,null=True)
     celular_acudiente = models.CharField(max_length=50, blank=True,null=True)
+    busqueda = models.CharField(max_length=300, blank=True,null=True)
 
    
     class Meta:
         ordering = ('-id',)
 
     def __str__(self):
-        return "{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}".format(self.user, 
+        return "{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}".format(self.user, 
         self.name , 
         self.gender, 
         self.blood_group, 
@@ -173,6 +174,7 @@ class UserProfile(models.Model):
         self.email_acudiente , 
         self.parentesco_acudiente , 
         self.direccion_acudiente, 
-        self.celular_acudiente
+        self.celular_acudiente,
+        self.busqueda
          )
 
