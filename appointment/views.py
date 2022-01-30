@@ -375,7 +375,7 @@ class ActividadPDF(View):
 #############################################################################################
 
 #############################################################################################
-#NEAREST HOSPITAL
+#URGENCIA
 
 
 
@@ -458,6 +458,10 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
         if ambulancia == "None":
             ambulancia_name = ""
 
+        uno = 1
+
+        print(usuario.name)
+
         context = {
             'usuario' : usuario,
             'imagen' : imagen,
@@ -466,6 +470,7 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
             'notas' : notas,
             'actividades' : actividades,
             'mapa_cali': mapa_cali,
+            'uno' : uno,
         }
         return render(request, 'appointment/urgencia.html', context)
 
