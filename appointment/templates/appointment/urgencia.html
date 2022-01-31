@@ -44,7 +44,6 @@
                 <option value = "LISETH YULIANA ZUÑIGA SINISTERRA" >LISETH YULIANA ZUÑIGA SINISTERRA</option>
              </select>
              <button id="search_submit" type="submit" class="btn btn-primary pull-center">Buscar</button>
-             
         </form>
     </div>
 
@@ -136,7 +135,14 @@
         <p>
             <br>
             <b>Nombre:</b>
-            {{ usuario.nombre_estudiante}} {{ usuario.nombre_2_estudiante}} {{ usuario.apellido_estudiante}} {{ usuario.apellido_2_estudiante}}
+            {{ usuario.nombre_estudiante}} 
+
+            {% if usuario.nombre_2_estudiante != "None" %}
+            {{ usuario.nombre_2_estudiante}} 
+            {% endif %}
+
+            {{ usuario.apellido_estudiante}} 
+            {{ usuario.apellido_2_estudiante}}
             <br>
             <b>Fecha de nacimiento:</b>
             {{ usuario.cumpleanos_estudiante}}
@@ -163,6 +169,15 @@
         <img src={{imagen}} alt="Photo">
     </div>
 
+    <div  id='coordenada' class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <p>
+
+        </p>
+        <script>
+            var a = "{{coordenadas}}";
+            document.getElementById("coordenada").innerHTML = a;
+        </script>
+    </div>
     <!--
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
         <script>
@@ -188,17 +203,31 @@
         </p>
     </div>
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <!--
         <form type="acudiente_get" action="." style="margin: 0">
             <a href="tel:{{ usuario.celular_acudiente}} ">Llamar acudiente</a>
             <a href="tel:{{ usuario.celular_acudiente}} ">{{ usuario.celular_acudiente}} </a>
         </form>
+        -->
+        <button onclick="location.href='tel:{{ usuario.celular_acudiente}}'" type="button" class="btn btn-primary pull-center">
+            Llamar acudiente
+        </button>
+    </div>
+
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <br>
     </div>
     
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
+        <!--
         <form type="get" action="." style="margin: 0">
             <a href="tel:{{ ambulancia_name}}  ">Llamar ambulancia</a>
             <a href="tel:{{ ambulancia_name}}  ">{{ ambulancia_name}}  </a>
         </form>
+        -->
+        <button onclick="location.href='tel:{{ ambulancia_name}}'" type="button" class="btn btn-primary pull-center">
+            Llamar ambulancia
+        </button>
     </div>
 
             
@@ -206,6 +235,7 @@
 
     <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
         <p>
+            <br>
             <b>Puntos de atencion:</b>  {{puntos_atencion}}
         </p>
     </div>
@@ -219,6 +249,8 @@
             <br>
             <p id = "status"></p>
             <a id = "map-link" target="_blank"></a>
+            <p id = "punto"></p>
+            <p id = "lugar"></p>
     </div>
 
     {% endif %}
@@ -252,9 +284,11 @@
     <script>
         function geoFindMe() 
         {
-
             const status = document.querySelector('#status');
             const mapLink = document.querySelector('#map-link');
+
+            const punto = document.querySelector('#punto');//
+            const lugar = document.querySelector('#lugar');//
 
             mapLink.href = '';
             mapLink.textContent = '';
@@ -263,10 +297,33 @@
             {
                 const latitude  = position.coords.latitude;
                 const longitude = position.coords.longitude;
+                const lat = '{{coordenadas}}' ;
+                //const long = '{{coordenadas}}' ;
+
+                // ESTO DEBERIA SER UN VECTOR CON TODAS LAS COORDENADAS DE TODOS LOS HOSPITALES
+                // EL CALCULO SE DEBE HACER X VECES, Y BUSCAR EL MINIMO ENTRE TODOS
+                // EN HREF BUSCAR DESDE PUNTO A HAST PUNTO B
+                
+
+                let x = Math.pow(4, 3);// 4 elevado a la 3
+
+                const distancia = x;
+
+                //distancia = (latitude-lat)**2 + (longitude-long)**2
+                //distancia = distancia**0.5
+
+
+                //distancia = (x2-x1)**2 + (y2-y1)**2
+                //distancia = distancia**0.5
 
                 status.textContent = '';
+
+                punto.textContent = '{{coordenadas}}';//
+                lugar.textContent = distancia;//
+                
                 mapLink.href = `https://www.google.com/maps?q=${latitude},${longitude}`;
-                mapLink.textContent = `Haz click aqui para buscar ubicacion de: Latitud ${latitude} °, Longitud ${longitude} °`;
+                        //mapLink.textContent = `Haz click aqui para buscar ubicacion de: Latitud ${latitude} °, Longitud ${longitude} °`;
+                mapLink.textContent = `Calcular recorrido`;
             }
             
             function error() {
@@ -282,8 +339,16 @@
 
         }
 
+        function pay()
+        {
+            alert('hola');
+        }
+
         document.querySelector('#find-me').addEventListener('click', geoFindMe);
 
+        //document.querySelector('#search_submit').addEventListener('click',geoFindMe);
+
+        /*
         function search_animal() 
         {
             
@@ -311,14 +376,16 @@
                 }
             }
         }
+        */
 
 
+        /*
         function changeColor(id) 
         {
-        //Do whatever you want to the specific element
         var listitem = document.getElementById(id);
         listitem.style.backgroundColor = "red";
         }
+        */
 
         
                 

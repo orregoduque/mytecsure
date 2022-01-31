@@ -458,9 +458,11 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
         if ambulancia == "None":
             ambulancia_name = ""
 
+        coordenadas = dict(HOSPITAL_Colsanitas).get("Coomeva", None)
+
         uno = 1
 
-        print(usuario.name)
+        print(coordenadas)
 
         context = {
             'usuario' : usuario,
@@ -471,6 +473,7 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
             'actividades' : actividades,
             'mapa_cali': mapa_cali,
             'uno' : uno,
+            'coordenadas' : coordenadas,
         }
         return render(request, 'appointment/urgencia.html', context)
 
