@@ -16,30 +16,6 @@
             <!-- <input  id="search_box" onkeyup="search_animal()" type="text" name="search_box"  placeholder="Nombre Estudiante" >-->
             <select id="search_box" name="search_box" class="form-control" > 
                 <option value="" disabled selected>Seleccionar estudiante</option>
-                <option value = "NICOLE AGUJA OCAMPO"> NICOLE AGUJA OCAMPO</option>
-                <option value = "SARAY BASTO BEJARANO"> SARAY BASTO BEJARANO </option>
-                <option value = "LAUREN SOFIA BEDOYA MONTOYA"> LAUREN SOFIA BEDOYA MONTOYA</option>
-                <option value = "NHICOLA CAICEDO AYALA">NHICOLA CAICEDO AYALA</option>
-                <option value = "IVETH CAROLINA CAICEDO MOSQUERA"> IVETH CAROLINA CAICEDO MOSQUERA</option>
-                <option value = "DIEGO FERNANDO CHAVARRO CORREA"> DIEGO FERNANDO CHAVARRO CORREA</option>
-                <option value = "NICOLAS CORREA BEDOYA"> NICOLAS CORREA BEDOYA</option>
-                <option value = "BRAYAN STIVEN DIOSA">BRAYAN STIVEN DIOSA</option>
-                <option value = "DAYANN LIZETH DUARTE BOLAÑOS"> DAYANN LIZETH DUARTE BOLAÑOS</option>
-                <option value = "JHONIER DAVID ERAZO MARTINEZ"> JHONIER DAVID ERAZO MARTINEZ</option>
-                <option value = "GABRIELA ESTUPIÑAN PAYAN"> GABRIELA ESTUPIÑAN PAYAN</option>
-                <option value = "HELLEN DAHYAN GALEANO ZULUAICA"> HELLEN DAHYAN GALEANO ZULUAICA</option>
-                <option value = "JUAN FELIPE GALINDO RUEDA" >JUAN FELIPE GALINDO RUEDA</option>
-                <option value = "NICOLAS GARCIA FLOREZ"> NICOLAS GARCIA FLOREZ</option>
-                <option value = "VALERY THALIANA GONZALEZ MANZANO"> VALERY THALIANA GONZALEZ MANZANO</option>
-                <option value = "MARLON ALEXIS ILES MONTERO"> MARLON ALEXIS ILES MONTERO</option>
-                <option value = "MIGUEL ANGEL LOPEZ CAMPO"> MIGUEL ANGEL LOPEZ CAMPO</option>
-                <option value = "JUAN JOSE LOPEZ VILLEGAS"> JUAN JOSE LOPEZ VILLEGAS</option>
-                <option value = "JULIANA MURIEL VANEGAS" >JULIANA MURIEL VANEGAS</option>
-                <option value = "JUAN PABLO OROBIO YEPES"> JUAN PABLO OROBIO YEPES</option>
-                <option value = "SAMIR FERNANDO RIASCOS"> VALENCIA SAMIR FERNANDO RIASCOS VALENCIA</option>
-                <option value = "ANDRES FELIPE SANCHEZ CUESTA" >ANDRES FELIPE SANCHEZ CUESTA</option>
-                <option value = "AZLANTH DAVID SARRIA BONILLA" >AZLANTH DAVID SARRIA BONILLA</option>
-                <option value = "JHONNY SANTIAGO TENORIO GUERRERO"> JHONNY SANTIAGO TENORIO GUERRERO</option>
                 <option value = "HEIDY TATIANA VALENCIA PERLAZA" >HEIDY TATIANA VALENCIA PERLAZA</option>
                 <option value = "LISETH YULIANA ZUÑIGA SINISTERRA" >LISETH YULIANA ZUÑIGA SINISTERRA</option>
              </select>
@@ -52,29 +28,6 @@
             <ol id='list'>
                 <li class="animals">NICOLE AGUJA OCAMPO</li>
                 <li class="animals">SARAY BASTO BEJARANO</li>
-                <li class="animals">LAUREN SOFIA BEDOYA MONTOYA</li>
-                <li class="animals">NHICOLA CAICEDO AYALA</li>
-                <li class="animals">IVETH CAROLINA CAICEDO MOSQUERA</li>
-                <li class="animals">DIEGO FERNANDO CHAVARRO CORREA</li>
-                <li class="animals">NICOLAS CORREA BEDOYA</li>
-                <li class="animals">BRAYAN STIVEN DIOSA	</li>
-                <li class="animals">DAYANN LIZETH DUARTE BOLAÑOS</li>
-                <li class="animals">JHONIER DAVID ERAZO MARTINEZ</li>
-                <li class="animals">GABRIELA ESTUPIÑAN PAYAN</li>
-                <li class="animals">HELLEN DAHYAN GALEANO ZULUAICA</li>
-                <li class="animals">JUAN FELIPE GALINDO RUEDA</li>
-                <li class="animals">NICOLAS GARCIA FLOREZ</li>
-                <li class="animals">VALERY THALIANA GONZALEZ MANZANO</li>
-                <li class="animals">MARLON ALEXIS ILES MONTERO</li>
-                <li class="animals">MIGUEL ANGEL LOPEZ CAMPO</li>
-                <li class="animals">JUAN JOSE LOPEZ VILLEGAS</li>
-                <li class="animals">JULIANA MURIEL VANEGAS</li>
-                <li class="animals">JUAN PABLO OROBIO YEPES</li>
-                <li class="animals">SAMIR FERNANDO RIASCOS VALENCIA</li>
-                <li class="animals">ANDRES FELIPE SANCHEZ CUESTA</li>
-                <li class="animals">AZLANTH DAVID SARRIA BONILLA</li>
-                <li class="animals">JHONNY SANTIAGO TENORIO GUERRERO</li>
-                <li class="animals">HEIDY TATIANA VALENCIA PERLAZA</li>
                 <li class="animals">LISETH YULIANA ZUÑIGA SINISTERRA</li>
             </ol>
            
@@ -300,24 +253,10 @@
                 const lat = '{{coordenadas}}' ;
                 //const long = '{{coordenadas}}' ;
 
-                // ESTO DEBERIA SER UN VECTOR CON TODAS LAS COORDENADAS DE TODOS LOS HOSPITALES
-                // EL CALCULO SE DEBE HACER X VECES, Y BUSCAR EL MINIMO ENTRE TODOS
-                // EN HREF BUSCAR DESDE PUNTO A HAST PUNTO B
-                
-
                 let x = Math.pow(4, 3);// 4 elevado a la 3
 
                 const distancia = x;
-
-                //distancia = (latitude-lat)**2 + (longitude-long)**2
-                //distancia = distancia**0.5
-
-
-                //distancia = (x2-x1)**2 + (y2-y1)**2
-                //distancia = distancia**0.5
-
                 status.textContent = '';
-
                 punto.textContent = '{{coordenadas}}';//
                 lugar.textContent = distancia;//
                 
