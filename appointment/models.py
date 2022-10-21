@@ -45,29 +45,29 @@ HOSPITAL = [
     ('Seguro Social', 'Seguro Social'),
 ]
 
-COORDENADAS = [ 
-    ('Colombo', '3.337044-76.543025'),
-    ('Americano', '3.378298-76.544850'),
-    ('Frances', '3.486792-76.521890'),
-    ('Bolivar', '3.340611-76.546607'),
-    ('Finca', '3.220535-76.582756'),
-    ('Teatro', '3.449569-76.535987'),
-    ('Imbanaco', '3.426507-76.544942'),
-    ('Colsanitas', '3.454529-76.537065'),
-    ('Coomeva', '3.464280-76.531116'),
-    ('Seguro Social', '3.467319-76.524384'),
+TIPOS_ARBOL = [
+    ('PALMA', 'PALMA'),
+    ('BONSAI', 'BONSAI'),
+    ('GIRASOL', 'GIRASOL'),
+]
+
+MOTIVACION = [
+    ('SIEMBRA', 'SIEMBRA'),
+    ('RIEGO', 'RIEGO'),
+    ('ABONO', 'ABONO'),
 ]
 
 class Evento(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student_idd', default='student')
     director = models.ForeignKey(User, on_delete=models.CASCADE, related_name='director_idd', default='director')
     date = models.DateField()
-    actividad = models.CharField(max_length=300, default= 'interclases')
+    actividad = models.CharField(choices=MOTIVACION, max_length=7, default= 'interclases')
     lugar = models.CharField(choices=LUGAR, max_length=9, blank=True)
     hospital_cercano = models.CharField(max_length=300, default= 'Imbanaco')
+    tipo_arbol = models.CharField(choices=TIPOS_ARBOL, max_length=7, default='PALMA', blank=True)
     
     class Meta:
         ordering = ('-id',)
 
     def __str__(self):
-        return "{}-{}-{}-{}".format(self.student, self.date, self.actividad, self.lugar, self.hospital_cercano)
+        return "{}-{}-{}-{}-{}-{}".format(self.student, self.date, self.actividad, self.lugar, self.hospital_cercano, self.tipo_arbol)

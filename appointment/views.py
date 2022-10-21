@@ -196,70 +196,26 @@ def EventoCreateView(request):
     if request.method == 'POST':
         form = EventoForm(request.POST)
         if form.is_valid():
-            #obtener usuario y su seguro
-            #obtener destino
-
-            #obtener coordenadas hospitales validos****
-            #obtener coordenadas destino
-            #hacer loop
-            #calcular hospital mas cercano
-            
-            #distancia = (x2-x1)**2 + (y2-y1)**2
-            #distancia = distancia**0.5
-
-
-            """
-            https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/web/api/geolocation_api/using_the_geolocation_api/_sample_.Examples.html
-            en la pestana de eventos,
-            profesor selecciona estudiante, y boton para hacer la busqueda del hospital mas cercano
-            basado en el seguro del estudiante
-            y la posicion actual segun google maps
-            un post con:
-
             username = form.cleaned_data.get("student")
             destino = form.cleaned_data.get("lugar")
+            arbol = form.cleaned_data.get("tipo_arbol")
             seguro = UserProfile.objects.get(user=username)
-            idseguro = str(seguro)
-            seguro = idseguro.split('-')
-            eps = seguro[-4]
-
-            falta:
-            integrar api de google maps
-            obtener coordenadas actuales
-            calcular hospital mas cercano
-            mostrar el mapa como llegar
-
-            en lugar de calcular sobre la misma app
-            un href con la direccion a ir, y que abra la app de google maps
-            **indicar que se debe descargar la app de google maps
-
-            dar la opcion de crear registro para evento a futuro (ninos pequenos), o evento inmediato
-            alertar con un correo al padre, cuando se cree un registro de su hijo
-
-
-            por ahora tener solo 2 modelos
-            el de urgencia:
-                seleccionando el nino y la ubicacion del celular, calcular hospital mas cercano
-
-            el de ver perfil del hijo, y estudiante
-
-            hacer una barra de busqueda para encontrar al estudiante o por nombre o por nit
-            """
-            username = form.cleaned_data.get("student")
-            destino = form.cleaned_data.get("lugar")
-            seguro = UserProfile.objects.get(user=username)
+            latlong = request.GET.get('longitude', None)
             idseguro = str(seguro)
             seguro = idseguro.split('-')
             eps = seguro[-4]
             print(username)
             print(destino)
             print(eps)
+            print(arbol)
+            print(latlong)
             cercano = 'Coomeva'
             #
             evento = form.save(commit=False)
             evento.director = request.user
             evento.date = datetime.datetime.now()
             evento.hospital_cercano = cercano
+            evento.tipo_arbol = arbol
             evento.save()
             return redirect('appointment:director-eventos')
     else:
@@ -331,7 +287,7 @@ class ActividadPDF(View):
             'actividades' : actividades,
         }
 
-        pdf = render_to_pdf('appointment/pdf_factura.html', context)
+        pdf = render_to_pdf('appointment/pdf_actividad.html', context)
         return HttpResponse(pdf, content_type='application/pdf')
     
     def post(self, request, *args, **kwargs):

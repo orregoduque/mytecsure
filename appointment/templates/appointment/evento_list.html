@@ -17,10 +17,12 @@
                     <tr>
                       <th>Lugar</th>
                       <th>Actividad</th>
+                      <th>Tipo Arbol</th>
                     </tr>
                     <tr>
                       <td>{{ obj.lugar }}</td>
                       <td>{{ obj.actividad }}</td>
+                      <td>{{ obj.tipo_arbol }}</td>
                     </tr>
                 </table>
                 {% endfor %}
@@ -68,6 +70,7 @@
                       <th>Lugar</th>
                       <th>Actividad</th>
                       <th>Hospital Cercano</th>
+                      <th>Tipo Arbol</th>
                     </tr>
                     <tr>
                       <th>{{ obj.date }} </th>
@@ -75,6 +78,7 @@
                       <td>{{ obj.lugar }}</td>
                       <td>{{ obj.actividad }}</td>
                       <td>{{ obj.hospital_cercano }}</td>
+                      <td>{{ obj.tipo_arbol }}</td>
                     </tr>
                 </table>
               {% endfor %}

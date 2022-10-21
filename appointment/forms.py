@@ -33,7 +33,7 @@ class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
         #fields = '__all__'
-        fields = ('student', 'lugar', 'actividad',)
+        fields = ('student', 'lugar', 'actividad','tipo_arbol',)
 
     def __init__(self, *args, **kwargs):
         super(EventoForm, self).__init__(*args, **kwargs)
@@ -42,3 +42,4 @@ class EventoForm(forms.ModelForm):
             self.fields['student'].queryset = User.objects.filter(user_type="S")
             self.fields['actividad'].label = "Motivo"
             self.fields['lugar'].label = "Ubicacion"
+            self.fields['tipo_arbol'].label = "Tipo de Arbol"
