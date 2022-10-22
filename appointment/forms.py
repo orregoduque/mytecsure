@@ -32,13 +32,11 @@ class NotaForm(forms.ModelForm):
 class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
-        #fields = '__all__'
         fields = ('student', 'lugar', 'actividad','tipo_arbol',)
 
     def __init__(self, *args, **kwargs):
         super(EventoForm, self).__init__(*args, **kwargs)
         if self.instance:
-            #self.fields["date"].label = "Date (YYYY-MM-DD)"
             self.fields['student'].queryset = User.objects.filter(user_type="S")
             self.fields['actividad'].label = "Motivo"
             self.fields['lugar'].label = "Ubicacion"

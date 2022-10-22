@@ -62,7 +62,7 @@ class Evento(models.Model):
     director = models.ForeignKey(User, on_delete=models.CASCADE, related_name='director_idd', default='director')
     date = models.DateField()
     actividad = models.CharField(choices=MOTIVACION, max_length=7, default= 'interclases')
-    lugar = models.CharField(choices=LUGAR, max_length=9, blank=True)
+    lugar = models.CharField(choices=LUGAR, max_length=9, default='Colombo')
     hospital_cercano = models.CharField(max_length=300, default= 'Imbanaco')
     tipo_arbol = models.CharField(choices=TIPOS_ARBOL, max_length=7, default='PALMA', blank=True)
     

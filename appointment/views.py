@@ -199,29 +199,46 @@ def EventoCreateView(request):
             username = form.cleaned_data.get("student")
             destino = form.cleaned_data.get("lugar")
             arbol = form.cleaned_data.get("tipo_arbol")
-            seguro = UserProfile.objects.get(user=username)
             latlong = request.GET.get('longitude', None)
-            idseguro = str(seguro)
-            seguro = idseguro.split('-')
-            eps = seguro[-4]
-            print(username)
-            print(destino)
-            print(eps)
-            print(arbol)
             print(latlong)
             cercano = 'Coomeva'
-            #
+            
             evento = form.save(commit=False)
             evento.director = request.user
             evento.date = datetime.datetime.now()
             evento.hospital_cercano = cercano
             evento.tipo_arbol = arbol
+            evento.lugar = destino
             evento.save()
             return redirect('appointment:director-eventos')
     else:
         form = EventoForm()
     return render(request, 'appointment/evento_create.html', {'form': form})
 
+def get(self, request, *args, **kwargs):
+ 
+        search_query = request.GET.get('find-me', 'nada')
+        latlong = request.GET.get('latlong', None)
+        atencion = request.GET.get('atencion_submit',None)
+        print(search_query)
+        acumulado = []
+        if(search_query != 'None'):
+            nombres =  list(search_query)
+            cuenta = 0
+            for id in nombres:
+                if(id == ' '):
+                    acumulado.append('_') 
+                else:
+                    acumulado.append(nombres[cuenta])
+                cuenta += 1
+
+        nombre_completo = ''.join(acumulado)
+        print(nombre_completo)
+        coordenadas = dict(HOSPITAL_Colsanitas).get("Coomeva", None)
+        context = {
+            'coordenadas' : coordenadas,
+        }
+        return render(request, 'appointment/urgencia.html', context)
 
 class EventosForAstudentView(LoginRequiredMixin, ListView):
     login_url = '/login/'
@@ -329,6 +346,31 @@ class ActividadPDF(View):
         pdf = render_to_pdf('appointment/pdf_actividad.html', context)
         return HttpResponse(pdf, content_type='application/pdf')
 #############################################################################################
+
+#PDF EVENTOS
+class EventoPDF(View):
+    def get(self, request, *args, **kwargs):
+        citas = Evento.objects.all().order_by('date')
+        actividades = Evento.objects.all().order_by('-date')
+        context = {
+            'citas' : citas,
+            'actividades' : actividades,
+        }
+
+        pdf = render_to_pdf('appointment/pdf_evento.html', context)
+        return HttpResponse(pdf, content_type='application/pdf')
+    
+    def post(self, request, *args, **kwargs):
+        form = AvailabilityForm(request.POST)
+        if form.is_valid():
+            forma = form.cleaned_data
+            forma = str(forma)
+            eventos = Evento.objects.all().order_by('-date')
+        context = {
+            'eventos' : eventos,
+        }
+        pdf = render_to_pdf('appointment/pdf_evento.html', context)
+        return HttpResponse(pdf, content_type='application/pdf')
 
 #############################################################################################
 #URGENCIA

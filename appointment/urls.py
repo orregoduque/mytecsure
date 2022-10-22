@@ -18,6 +18,7 @@ urlpatterns = [
     path("notas/s/", views.NotasForAstudentView.as_view(), name="student-notas"),
     path("notas/d/", views.NotasForAdirectorView.as_view(), name="director-notas"),
     path('pdf_actividad/', views.ActividadPDF.as_view(), name="pdf_actividad"),
+    path('pdf_evento/', views.EventoPDF.as_view(), name="pdf_evento"),
     path("evento/create", views.EventoCreateView, name="evento-create"),
     path("eventos/s/", views.EventosForAstudentView.as_view(), name="student-eventos"),
     path("eventos/d/", views.EventosForAdirectorView.as_view(), name="director-eventos"),

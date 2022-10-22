@@ -22,6 +22,6 @@ class FilterNota(admin.ModelAdmin):
 admin.site.register(Nota,FilterNota)
 
 class FilterEvento(admin.ModelAdmin):
-    list_display =('student','date', 'lugar', 'actividad')
-    list_filter = ('student' , 'date','lugar')
+    list_display =('student','date', 'lugar', 'actividad','director')
+    list_filter = ('student' , 'date','lugar','director')
 admin.site.register(Evento,FilterEvento)
