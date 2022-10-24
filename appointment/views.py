@@ -204,22 +204,24 @@ def EventoCreateView(request):
             cercano = 'Coomeva'
             
             evento = form.save(commit=False)
-            evento.director = request.user
+            evento.student = request.user
+            #evento.director = request.user
             evento.date = datetime.datetime.now()
             evento.hospital_cercano = cercano
             evento.tipo_arbol = arbol
             evento.lugar = destino
             evento.save()
-            return redirect('appointment:director-eventos')
+            if request.user == "D":
+                return redirect('appointment:director-eventos')
+            else:
+                return redirect('appointment:student-eventos')
     else:
         form = EventoForm()
     return render(request, 'appointment/evento_create.html', {'form': form})
 
 def get(self, request, *args, **kwargs):
  
-        search_query = request.GET.get('find-me', 'nada')
-        latlong = request.GET.get('latlong', None)
-        atencion = request.GET.get('atencion_submit',None)
+        search_query = request.GET.get('search_box', 'nada')
         print(search_query)
         acumulado = []
         if(search_query != 'None'):

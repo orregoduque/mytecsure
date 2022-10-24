@@ -59,7 +59,7 @@ MOTIVACION = [
 
 class Evento(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student_idd', default='student')
-    director = models.ForeignKey(User, on_delete=models.CASCADE, related_name='director_idd', default='director')
+    #director = models.ForeignKey(User, on_delete=models.CASCADE, related_name='director_idd', default='director')
     date = models.DateField()
     actividad = models.CharField(choices=MOTIVACION, max_length=7, default= 'interclases')
     lugar = models.CharField(choices=LUGAR, max_length=9, default='Colombo')
@@ -70,4 +70,5 @@ class Evento(models.Model):
         ordering = ('-id',)
 
     def __str__(self):
-        return "{}-{}-{}-{}-{}-{}".format(self.student, self.date, self.actividad, self.lugar, self.hospital_cercano, self.tipo_arbol)
+        #return "{}-{}-{}-{}-{}-{}".format(self.student, self.date, self.actividad, self.lugar, self.hospital_cercano, self.tipo_arbol)
+        return "{}-{}-{}-{}-{}".format(self.date, self.actividad, self.lugar, self.hospital_cercano, self.tipo_arbol)

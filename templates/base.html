@@ -38,9 +38,9 @@
                       <!--
                       <li><a href="{% url 'appointment:student-prescriptions' %}" style="color: rgb(255, 255, 255)" >Actividades</a></li>
                       <li><a href="{% url 'appointment:student-notas' %}" style="color: rgb(255, 255, 255)" >Notas</a></li>
+                      <li><a href="{% url 'user_profile:OnePerfilListView' %}" style="color: rgb(255, 255, 255)">Perfil</a></li>
                       -->
                       <li><a href="{% url 'appointment:student-eventos' %}" style="color: rgb(255, 255, 255)" >Eventos</a></li>
-                      <li><a href="{% url 'user_profile:OnePerfilListView' %}" style="color: rgb(255, 255, 255)">Perfil</a></li>
     						      <li><a href="{% url 'account:logout' %}" ><button class="btn btn-warning btn-sm" style="color: rgb(255, 255, 255)" >Log Out</button></a></li> 
                       {% endif %}
                       {% if user.is_receptionist %}
