@@ -30,19 +30,19 @@ class Nota(models.Model):
 
 
 LUGAR = [
-    ('Colombo', 'Colombo'),
-    ('Americano', 'Americano'),
-    ('Frances', 'Frances'),
-    ('Bolivar', 'Bolivar'),
-    ('Finca', 'Finca'),
-    ('Teatro', 'Teatro'),
+    ('Parque', 'Parque'),
+    ('Colegio', 'Colegio'),
+    ('Universidad', 'Universidad'),
+    ('Rural', 'Rural'),
+    ('Barrio', 'Barrio'),
+    ('Campo Deportivo', 'Campo Deportivo'),
 ]
 
-HOSPITAL = [ 
-    ('Imbanaco', 'Imbanaco'),
-    ('Colsanitas', 'Colsanitas'),
-    ('Coomeva', 'Coomeva'),
-    ('Seguro Social', 'Seguro Social'),
+CIUDAD = [ 
+    ('Cali', 'Cali'),
+    ('Bogota', 'Bogota'),
+    ('Medellin', 'Medellin'),
+    ('Barranquilla ', 'Barranquilla '),
 ]
 
 TIPOS_ARBOL = [
@@ -62,8 +62,8 @@ class Evento(models.Model):
     #director = models.ForeignKey(User, on_delete=models.CASCADE, related_name='director_idd', default='director')
     date = models.DateField()
     actividad = models.CharField(choices=MOTIVACION, max_length=7, default= 'interclases')
-    lugar = models.CharField(choices=LUGAR, max_length=9, default='Colombo')
-    hospital_cercano = models.CharField(max_length=300, default= 'Imbanaco')
+    lugar = models.CharField(choices=LUGAR, max_length=16, default='Parque')
+    ciudad = models.CharField(choices=CIUDAD, max_length=13, default= 'Cali')
     tipo_arbol = models.CharField(choices=TIPOS_ARBOL, max_length=7, default='PALMA', blank=True)
     
     class Meta:
@@ -71,4 +71,4 @@ class Evento(models.Model):
 
     def __str__(self):
         #return "{}-{}-{}-{}-{}-{}".format(self.student, self.date, self.actividad, self.lugar, self.hospital_cercano, self.tipo_arbol)
-        return "{}-{}-{}-{}-{}".format(self.date, self.actividad, self.lugar, self.hospital_cercano, self.tipo_arbol)
+        return "{}-{}-{}-{}-{}".format(self.date, self.actividad, self.lugar, self.ciudad, self.tipo_arbol)

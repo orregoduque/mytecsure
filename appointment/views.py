@@ -165,31 +165,7 @@ COORDENADAS = [
     ('Teatro', '3.449569-76.535987'),
 ]
 
-HOSPITAL_Colsanitas = [
-    ('Imbanaco', '3.426507-76.544942'),
-    ('Colsanitas', '3.454529-76.537065'),
-    ('Coomeva', '3.464280-76.531116'),
-    ('Seguro Social', '3.467319-76.524384'),
-]
 
-HOSPITAL_Coomeva = [
-    ('Imbanaco', '3.426507-76.544942'),
-    ('Colsanitas', '3.454529-76.537065'),
-    ('Coomeva', '3.464280-76.531116'),
-    ('Seguro Social', '3.467319-76.524384'),
-]
-HOSPITAL_Seguro = [
-    ('Imbanaco', '3.426507-76.544942'),
-    ('Colsanitas', '3.454529-76.537065'),
-    ('Coomeva', '3.464280-76.531116'),
-    ('Seguro Social', '3.467319-76.524384'),
-]
-HOSPITAL_Imbanaco = [
-    ('Imbanaco', '3.426507-76.544942'),
-    ('Colsanitas', '3.454529-76.537065'),
-    ('Coomeva', '3.464280-76.531116'),
-    ('Seguro Social', '3.467319-76.524384'),
-]
 @login_required(login_url='/login/')
 def EventoCreateView(request):
     
@@ -199,6 +175,7 @@ def EventoCreateView(request):
             username = form.cleaned_data.get("student")
             destino = form.cleaned_data.get("lugar")
             arbol = form.cleaned_data.get("tipo_arbol")
+            ciudad = form.cleaned_data.get("ciudad")
             latlong = request.GET.get('longitude', None)
             print(latlong)
             cercano = 'Coomeva'
@@ -207,7 +184,7 @@ def EventoCreateView(request):
             evento.student = request.user
             #evento.director = request.user
             evento.date = datetime.datetime.now()
-            evento.hospital_cercano = cercano
+            evento.ciudad = ciudad
             evento.tipo_arbol = arbol
             evento.lugar = destino
             evento.save()
