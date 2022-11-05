@@ -177,8 +177,17 @@ def EventoCreateView(request):
             arbol = form.cleaned_data.get("tipo_arbol")
             ciudad = form.cleaned_data.get("ciudad")
             latlong = request.GET.get('longitude', None)
+            numero = form.cleaned_data.get("numero")
+            nombre_comun = form.cleaned_data.get("nombre_comun")
+            nombre_cientifico = form.cleaned_data.get("nombre_cientifico")
+            familia = form.cleaned_data.get("familia")
+            altura = form.cleaned_data.get("altura")
+            dap = form.cleaned_data.get("dap")
+            diametro_copa = form.cleaned_data.get("diametro_copa")
+            comuna = form.cleaned_data.get("comuna")
+            barrio = form.cleaned_data.get("barrio")
+            recomendaciones = form.cleaned_data.get("recomendaciones")
             print(latlong)
-            cercano = 'Coomeva'
             
             evento = form.save(commit=False)
             evento.student = request.user
@@ -187,6 +196,16 @@ def EventoCreateView(request):
             evento.ciudad = ciudad
             evento.tipo_arbol = arbol
             evento.lugar = destino
+            evento.numero = numero
+            evento.nombre_comun = nombre_comun
+            evento.nombre_cientifico = nombre_cientifico
+            evento.familia = familia
+            evento.altura = altura
+            evento.dap = dap
+            evento.diametro_copa = diametro_copa
+            evento.comuna = comuna
+            evento.barrio = barrio
+            evento.recomendaciones = recomendaciones
             evento.save()
             if request.user == "D":
                 return redirect('appointment:director-eventos')
@@ -213,7 +232,7 @@ def get(self, request, *args, **kwargs):
 
         nombre_completo = ''.join(acumulado)
         print(nombre_completo)
-        coordenadas = dict(HOSPITAL_Colsanitas).get("Coomeva", None)
+        coordenadas = "Coomeva"
         context = {
             'coordenadas' : coordenadas,
         }
@@ -435,7 +454,7 @@ class UrgenciaForAdirectorView(LoginRequiredMixin, View):
         if ambulancia == "None":
             ambulancia_name = ""
 
-        coordenadas = dict(HOSPITAL_Colsanitas).get("Coomeva", None)
+        coordenadas ="Coomeva"
 
         uno = 1
 
