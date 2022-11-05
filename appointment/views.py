@@ -176,7 +176,6 @@ def EventoCreateView(request):
             destino = form.cleaned_data.get("lugar")
             arbol = form.cleaned_data.get("tipo_arbol")
             ciudad = form.cleaned_data.get("ciudad")
-            latlong = request.GET.get('longitude', None)
             numero = form.cleaned_data.get("numero")
             nombre_comun = form.cleaned_data.get("nombre_comun")
             nombre_cientifico = form.cleaned_data.get("nombre_cientifico")
@@ -187,7 +186,7 @@ def EventoCreateView(request):
             comuna = form.cleaned_data.get("comuna")
             barrio = form.cleaned_data.get("barrio")
             recomendaciones = form.cleaned_data.get("recomendaciones")
-            print(latlong)
+            imagen = request.FILES["image"]
             
             evento = form.save(commit=False)
             evento.student = request.user
@@ -206,6 +205,7 @@ def EventoCreateView(request):
             evento.comuna = comuna
             evento.barrio = barrio
             evento.recomendaciones = recomendaciones
+            evento.image = imagen
             evento.save()
             if request.user == "D":
                 return redirect('appointment:director-eventos')

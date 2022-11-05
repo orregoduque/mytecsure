@@ -1,6 +1,7 @@
 from socket import NI_NUMERICHOST
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.conf.urls.static import static
 User = get_user_model()
 
 class Prescription(models.Model):
@@ -66,6 +67,7 @@ class Evento(models.Model):
     lugar = models.CharField(choices=LUGAR, max_length=16, default='Parque')
     ciudad = models.CharField(choices=CIUDAD, max_length=13, default= 'Cali')
     tipo_arbol = models.CharField(choices=TIPOS_ARBOL, max_length=7, default='PALMA')
+    image = models.ImageField( null=True , blank= True)
 
     numero = models.CharField(max_length=20, blank=True)
     nombre_comun = models.CharField(max_length=100, blank=True)
