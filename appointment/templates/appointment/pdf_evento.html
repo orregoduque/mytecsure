@@ -42,16 +42,25 @@
                 <th>Usuario</th>
                 <th>Fecha</th>
                 <th>Arbol</th>
+                <th>Numero</th>
+                <th>Actividad</th>
             </tr>
             {% for obj in eventos %}
             <tr>
                 <td>{{obj.student }}</td>
                 <td>{{obj.date }}</td>
                 <td>{{obj.tipo_arbol}}</td>
+                <td>{{obj.numero}}</td>
+                <td>{{obj.actividad}}</td>
             </tr>
             {% endfor %}
             
         </table>
         <hr>
+        <div>
+            <a>
+            <img src="static/images/{{nombre_foto}}" style="width:400px" class=" center-block">
+            </a> 
+        </div>
     </body>
     </html>

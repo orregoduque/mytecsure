@@ -11,7 +11,19 @@
           <br>
           <Div class="col-lg-4 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-1 col-xs-6 col-xs-offset-0">
             <a href="{% url 'appointment:evento-create' %}"><button class="btn btn-primary btn-sm">Nuevo Evento</button></a>
-        </Div>
+          </Div>
+          <br>
+          <br>
+          <Div class="col-lg-4 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-1 col-xs-6 col-xs-offset-0">
+            <Form action = "{% url 'appointment:pdf_evento'%}" method = "post">
+              {% csrf_token %}
+              <div class="input-div">
+                  <label class="form-label" for="id_numer" ></label>
+                  <input type="number" name="ingreso">
+                  <button class="btn btn-primary btn-sm">Crear PDF</button>
+              </div>
+            </Form>
+          </Div>
           <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-6 col-lg-offset-3">
             <ul class="list-group">
                 {% for obj in object_list %}
@@ -23,7 +35,6 @@
                       <th>Actividad</th>
                       <th>Tipo Arbol</th>
                       <th>Numero</th>
-                      <th>Altura</th>
                     </tr>
                     <tr>
                       <td>{{ obj.date }}</td>
@@ -32,7 +43,6 @@
                       <td>{{ obj.actividad }}</td>
                       <td>{{ obj.tipo_arbol }}</td>
                       <td>{{ obj.numero }}</td>
-                      <td>{{ obj.altura }}</td>
                     </tr>
                 </table>
                 {% endfor %}
@@ -63,27 +73,7 @@
           </div>
         </div>
         <div class="container-fluid">
-          <div class="row"> 
-            <!--
-              <Div class="col-lg-4 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-1 col-xs-6 col-xs-offset-0">
-                  <a href="{% url 'appointment:evento-create' %}"><button class="btn btn-primary btn-sm">Nuevo Evento</button></a>
-              </Div>
-            -->
-              <Div class="col-lg-4 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-1 col-xs-6 col-xs-offset-0">
-                <Form action = "{% url 'appointment:pdf_evento'%}" method = "post">
-                  {% csrf_token %}
-                  <div class="input-div">
-                      <label class="form-label" for="id_ingres" ></label>
-                        <select class="form-select" name="ingreso">
-                          <option value ="none">Seleccionar</option>
-                            <option value ='todos'>Todo</option>
-                      </select>
-                      
-                      
-                      <button class="btn btn-primary btn-sm">Crear PDF</button>
-                  </div>
-                </Form>
-              </Div>
+          <div class="row">
           </div>
         </div>
         <br>
@@ -99,7 +89,7 @@
                       <th>Ciudad</th>
                       <th>Tipo Arbol</th>
                       <th>Numero</th>
-                      <th>Altura</th>
+                      <th>PDF</th>
                     </tr>
                     <tr>
                       <th>{{ obj.date }} </th>
@@ -109,7 +99,16 @@
                       <td>{{ obj.ciudad }}</td>
                       <td>{{ obj.tipo_arbol }}</td>
                       <td>{{ obj.numero }}</td>
-                      <td>{{ obj.altura }}</td>
+                      <td>
+                        <Form action = "{% url 'appointment:pdf_evento'%}" method = "post">
+                          {% csrf_token %}
+                          <div class="input-div">
+                              <label class="form-label" for="id_ingres" ></label>
+                              <input type="checkbox" value ='todos' name="ingreso" id="vehicle1" name="vehicle1" value="Bike">
+                              <button class="btn btn-primary btn-sm">Crear PDF</button>
+                          </div>
+                        </Form>
+                      </td>
                     </tr>
                 </table>
               {% endfor %}
@@ -135,4 +134,9 @@
           
     {% endif %}
 </div>
+<script type="text/javascript">
+  var year = new Date();
+  document.getElementById("year").value="{{ Evento.id }}";
+  //document.getElementById("year").value=(year.getFullYear());
+</script>
 {% endblock %}

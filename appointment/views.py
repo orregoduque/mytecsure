@@ -186,7 +186,8 @@ def EventoCreateView(request):
             comuna = form.cleaned_data.get("comuna")
             barrio = form.cleaned_data.get("barrio")
             recomendaciones = form.cleaned_data.get("recomendaciones")
-            imagen = request.FILES["image"]
+            if len(request.FILES) != 0:
+                imagen = request.FILES["image"]
             
             evento = form.save(commit=False)
             evento.student = request.user
@@ -205,7 +206,8 @@ def EventoCreateView(request):
             evento.comuna = comuna
             evento.barrio = barrio
             evento.recomendaciones = recomendaciones
-            evento.image = imagen
+            if len(request.FILES) != 0:
+                evento.image = imagen
             evento.save()
             if request.user == "D":
                 return redirect('appointment:director-eventos')
@@ -359,14 +361,29 @@ class EventoPDF(View):
         return HttpResponse(pdf, content_type='application/pdf')
     
     def post(self, request, *args, **kwargs):
+        check_box = ''
+        eventos = ''
+        nombre_foto = ''
         form = AvailabilityForm(request.POST)
         if form.is_valid():
             forma = form.cleaned_data
             forma = str(forma)
-            eventos = Evento.objects.all().order_by('-date')
-        context = {
-            'eventos' : eventos,
-        }
+            check_box = request.POST.get('ingreso', None)
+            nombre_foto = 'arbol.jpeg'
+            print(check_box)
+            if (check_box != 'None'):
+                eventos = Evento.objects.filter(numero=check_box)
+                #eventos = Evento.objects.all().order_by('-date')
+                
+        if (check_box != None):
+            context = {
+                'eventos' : eventos,
+                'nombre_foto' : nombre_foto,
+            }
+        else:
+            context = {
+                'nombre_foto' : nombre_foto,
+            }
         pdf = render_to_pdf('appointment/pdf_evento.html', context)
         return HttpResponse(pdf, content_type='application/pdf')
 
