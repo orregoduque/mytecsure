@@ -186,6 +186,9 @@ def EventoCreateView(request):
             comuna = form.cleaned_data.get("comuna")
             barrio = form.cleaned_data.get("barrio")
             recomendaciones = form.cleaned_data.get("recomendaciones")
+            latitud = form.cleaned_data.get("latitud")
+            longitud = form.cleaned_data.get("longitud")
+
             if len(request.FILES) != 0:
                 imagen = request.FILES["image"]
             
@@ -206,6 +209,8 @@ def EventoCreateView(request):
             evento.comuna = comuna
             evento.barrio = barrio
             evento.recomendaciones = recomendaciones
+            evento.latitud = latitud
+            evento.longitud = longitud
             if len(request.FILES) != 0:
                 evento.image = imagen
             evento.save()
@@ -373,7 +378,7 @@ class EventoPDF(View):
             print(check_box)
             if (check_box != 'None'):
                 eventos = Evento.objects.filter(numero=check_box)
-                #eventos = Evento.objects.all().order_by('-date')
+                nombre_foto = Evento.objects.get(numero=check_box).image
                 
         if (check_box != None):
             context = {

@@ -72,6 +72,18 @@
             <h2 style="color: rgb(88, 105, 255)">Eventos</h2>
           </div>
         </div>
+        <br>
+          <br>
+          <Div class="col-lg-4 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-1 col-xs-6 col-xs-offset-0">
+            <Form action = "{% url 'appointment:pdf_evento'%}" method = "post">
+              {% csrf_token %}
+              <div class="input-div">
+                  <label class="form-label" for="id_numer" ></label>
+                  <input type="number" name="ingreso">
+                  <button class="btn btn-primary btn-sm">Crear PDF</button>
+              </div>
+            </Form>
+          </Div>
         <div class="container-fluid">
           <div class="row">
           </div>
@@ -89,7 +101,6 @@
                       <th>Ciudad</th>
                       <th>Tipo Arbol</th>
                       <th>Numero</th>
-                      <th>PDF</th>
                     </tr>
                     <tr>
                       <th>{{ obj.date }} </th>
@@ -99,16 +110,6 @@
                       <td>{{ obj.ciudad }}</td>
                       <td>{{ obj.tipo_arbol }}</td>
                       <td>{{ obj.numero }}</td>
-                      <td>
-                        <Form action = "{% url 'appointment:pdf_evento'%}" method = "post">
-                          {% csrf_token %}
-                          <div class="input-div">
-                              <label class="form-label" for="id_ingres" ></label>
-                              <input type="checkbox" value ='todos' name="ingreso" id="vehicle1" name="vehicle1" value="Bike">
-                              <button class="btn btn-primary btn-sm">Crear PDF</button>
-                          </div>
-                        </Form>
-                      </td>
                     </tr>
                 </table>
               {% endfor %}

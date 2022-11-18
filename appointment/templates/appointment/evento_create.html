@@ -17,15 +17,9 @@
             {% csrf_token %}
             {% bootstrap_form form %}
             <input type="submit" value="Create" class="btn btn-default">
+            <input type="hidden" name="fruit" id="fruit" value="juan">
         </form>
     </div>
-    <!--
-    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-4 col-md-offset-2 col-md-4 col-lg-4 col-lg-offset-3">
-        <form type="get" action="" style="margin: 0">
-             <button id="search_submit" type="submit" class="btn btn-primary pull-center">Buscar</button>
-        </form>
-    </div>
-    -->
 </div>
 
 <div>
@@ -47,11 +41,11 @@
                 const longitude = position.coords.longitude;
                 status.textContent = '';
                 punto.textContent = '';
-                lugar.textContent = latitude;//
+                //lugar.textContent = latitude;//
                 
-                //mapLink.href = `https://www.google.com/maps?q=${latitude},${longitude}`;
-                mapLink.href = `http://127.0.0.1:8000/evento/create/<str:${latitude}>`;
-                mapLink.textContent = `Ubicacion calculada!`;
+                mapLink.href = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                //mapLink.href = `http://127.0.0.1:8000/evento/create/<str:${latitude}>`;
+                mapLink.textContent = `Latitud: ${latitude}, Longitud: ${longitude}`;
             }
             function error() 
             {

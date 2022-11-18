@@ -79,10 +79,28 @@ class Evento(models.Model):
     comuna = models.CharField(max_length=20, blank=True)
     barrio = models.CharField(max_length=20, blank=True)
     recomendaciones = models.CharField(max_length=200, blank=True)
+    latitud = models.CharField(max_length=20, blank=True)
+    longitud = models.CharField(max_length=20, blank=True)
     
     class Meta:
         ordering = ('-id',)
 
     def __str__(self):
         #return "{}-{}-{}-{}-{}-{}".format(self.student, self.date, self.actividad, self.lugar, self.hospital_cercano, self.tipo_arbol)
-        return "{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}".format(self.date, self.actividad, self.lugar, self.ciudad, self.tipo_arbol, self.numero, self.nombre_comun, self.nombre_cientifico, self.familia, self.altura, self.dap, self.diametro_copa, self.comuna, self.barrio, self.recomendaciones)
+        return "{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}".format(self.date, 
+        self.actividad, 
+        self.lugar, 
+        self.ciudad, 
+        self.tipo_arbol, 
+        self.numero, 
+        self.nombre_comun, 
+        self.nombre_cientifico, 
+        self.familia, 
+        self.altura, 
+        self.dap, 
+        self.diametro_copa, 
+        self.comuna, 
+        self.barrio, 
+        self.recomendaciones, 
+        self.latitud, 
+        self.longitud)
