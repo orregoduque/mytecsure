@@ -267,19 +267,13 @@ class EventosForAdirectorView(LoginRequiredMixin, ListView):
 #CSV FILE
 def some_view(request):
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="citas.csv"'
+    response['Content-Disposition'] = 'attachment; filename="datos.csv"'
     writer = csv.writer(response)
-    writer.writerow(['Lista_de_citas:',])
+    writer.writerow(['Lista_de_eventos:',])
     writer.writerow([' ',])
-    writer.writerow(['Caballo', 'Fecha', 'Estado', 'Asunto'])
-    citas = Prescription.objects.all().order_by('date')
-    writer.writerow(citas)
-    writer.writerow([' ',])
-    writer.writerow(['Lista_de_actividades:',])
-    writer.writerow([' ',])
-    writer.writerow(['Caballo', 'Fecha', 'Comida', 'Caminadora','Pasto','Herradura'])
-    actividades = Prescription.objects.all().order_by('-date')
-    writer.writerow(actividades)
+    writer.writerow(['usuario', 'Fecha', 'lugar', 'numero',])
+    eventos = Evento.objects.all().order_by('date')
+    writer.writerow(eventos)
     
     return response
 #############################################################################################
