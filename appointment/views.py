@@ -225,6 +225,7 @@ def EventoCreateView(request):
 def get(self, request, *args, **kwargs):
  
         search_query = request.GET.get('search_box', 'nada')
+        """
         print(search_query)
         acumulado = []
         if(search_query != 'None'):
@@ -239,6 +240,7 @@ def get(self, request, *args, **kwargs):
 
         nombre_completo = ''.join(acumulado)
         print(nombre_completo)
+        """
         coordenadas = "Coomeva"
         context = {
             'coordenadas' : coordenadas,
@@ -271,10 +273,13 @@ def some_view(request):
     writer = csv.writer(response)
     writer.writerow(['Lista_de_eventos:',])
     writer.writerow([' ',])
-    writer.writerow(['usuario', 'Fecha', 'lugar', 'numero',])
+    writer.writerow(['date', 'actividad', 'lugar', 'ciudad', 'tipo_arbol', 'numero', 'nombre_comun', 'nombre_cientifico', 'familia', 'altura', 'dap', 'diametro_copa', 'comuna', 'barrio', 'recomendaciones', 'latitud', 'longitud',])
+    writer.writerow([' ',])
     eventos = Evento.objects.all().order_by('date')
-    writer.writerow(eventos)
-    
+    cantidad = len(eventos)
+    for i in range(len(eventos)):
+        writer.writerow([eventos[i]])
+    writer.writerow([' ',])
     return response
 #############################################################################################
 
