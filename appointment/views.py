@@ -269,8 +269,12 @@ class EventosForAdirectorView(LoginRequiredMixin, ListView):
 #CSV FILE
 def some_view(request):
     response = HttpResponse(content_type='text/csv')
+    fecha =  str(datetime.datetime.now())
+    #fecha = fecha + '.csv'
     response['Content-Disposition'] = 'attachment; filename="datos.csv"'
+    #response['Content-Disposition'] = 'attachment; filename=fecha'
     writer = csv.writer(response)
+    writer.writerow([fecha,])
     writer.writerow(['Lista_de_eventos:',])
     writer.writerow([' ',])
     writer.writerow(['date', 'actividad', 'lugar', 'ciudad', 'tipo_arbol', 'numero', 'nombre_comun', 'nombre_cientifico', 'familia', 'altura', 'dap', 'diametro_copa', 'comuna', 'barrio', 'recomendaciones', 'latitud', 'longitud',])

@@ -10,7 +10,7 @@
           </div>
           <br>
           <Div class="col-lg-4 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-1 col-xs-6 col-xs-offset-0">
-            <a href="{% url 'appointment:evento-create' %}"><button class="btn btn-primary btn-sm">Nuevo Evento</button></a>
+            <a href="{% url 'appointment:evento-create' %}"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo Evento</button></a>
           </Div>
           <br>
           <br>
@@ -20,7 +20,7 @@
               <div class="input-div">
                   <label class="form-label" for="id_numer" ></label>
                   <input type="number" name="ingreso">
-                  <button class="btn btn-primary btn-sm">Crear PDF</button>
+                  <button class="btn btn-primary btn-lg"> <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>Crear PDF</button>
               </div>
             </Form>
           </Div>
@@ -73,17 +73,17 @@
           </div>
         </div>
         <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-4 col-lg-offset-3">
-              <a href="{% url 'appointment:csv_view'%}"><button class="btn btn-primary pull-center">CSV</button></a>
+              <a href="{% url 'appointment:csv_view'%}"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> Descargar CSV</button></a>
       </div>
         <br>
           <br>
           <Div class="col-lg-4 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-1 col-xs-6 col-xs-offset-0">
             <Form action = "{% url 'appointment:pdf_evento'%}" method = "post">
               {% csrf_token %}
-              <div class="input-div">
+              <div class="input-group">
                   <label class="form-label" for="id_numer" ></label>
-                  <input type="number" name="ingreso">
-                  <button class="btn btn-primary btn-sm">Crear PDF</button>
+                  <input type="number" class="form-control" name="ingreso" placeholder="Ingresar numero" aria-describedby="sizing-addon2">
+                  <button class="btn btn-primary btn-lg"> <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Crear PDF</button>
               </div>
             </Form>
           </Div>
