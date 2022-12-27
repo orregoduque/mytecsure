@@ -1,66 +1,130 @@
 <head>
     <style>
-        @page {
+        @page 
+        {
             size: a4 portrait;
-            @frame header_frame {           /* Static Frame */
+            @frame header_frame 
+            {           /* Static Frame */
                 -pdf-frame-content: header_content;
                 left: 50pt; width: 512pt; top: 50pt; height: 40pt;
             }
-            @frame content_frame {          /* Content Frame */
+            @frame content_frame 
+            {          /* Content Frame */
                 left: 50pt; width: 512pt; top: 90pt; height: 632pt;
             }
-            @frame footer_frame {           /* Another static Frame */
+            @frame footer_frame 
+            {           /* Another static Frame */
                 -pdf-frame-content: footer_content;
                 left: 50pt; width: 512pt; top: 772pt; height: 20pt;
             }
         }
     </style>
-    </head>
-    
+</head>
+
     <body>
         <!-- Content for Static Frame 'header_frame' -->
         <div id="header_content">
-            <h3>ARBOLES</h3>
-            <p>CALI</p>
-            <br>
+            <a>
+            <img src="static/images/{{nombre_foto}}" style="width:150px">
+            </a>   
+        </div>
+        <div >
+            <p>
+                <h3 align="center">
+                    ARBOLADO
+                    <br/>
+                    <br/>
+                </h3>
+            </p>
+            <p align="center">
+                <strong>GENERACION DE REPORTE</strong>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </p>
         </div>
         <!-- Content for Static Frame 'footer_frame' -->
-        <div id="footer_content">(c) - page <pdf:pagenumber>
+        <div id="footer_content">Arbolado(c) - page <pdf:pagenumber>
             of <pdf:pagecount>
         </div>
         <!-- HTML Content -->
         <table>
                 <tr>
-                    <td><strong>JUAN ORREGO</strong></td>
+                    <td>AREA DE </td>
                     <td><strong></strong></td>
                 </tr>
         </table>
-        <p><strong>Actividades</strong></p>
+        <p>
+            <strong>Lista de Actividades</strong>
+        </p>
+        <br/>
         <hr>
-        <table>
-            <tr>
-                <th>Usuario</th>
-                <th>Fecha</th>
-                <th>Arbol</th>
-                <th>Numero</th>
-                <th>Actividad</th>
-            </tr>
-            {% for obj in eventos %}
-            <tr>
-                <td>{{obj.student }}</td>
-                <td>{{obj.date }}</td>
-                <td>{{obj.tipo_arbol}}</td>
-                <td>{{obj.numero}}</td>
-                <td>{{obj.actividad}}</td>
-            </tr>
-            {% endfor %}
+        <div class="row">
+            <table>
+                <thead>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    <th>Arbol</th>
+                    <th>Numero</th>
+                    <th>Actividad</th>
+                    <th>Coordenadas</th>
+                </thead>
+                {% for obj in eventos %}
+                <tr>
+                    <td>{{obj.student }}</td>
+                    <td>{{obj.date }}</td>
+                    <td>{{obj.tipo_arbol}}</td>
+                    <td>{{obj.numero}}</td>
+                    <td>{{obj.actividad}}</td>
+                    <td>{{obj.longitud}},{{obj.latitud}} </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <hr>
+        <p>
+        </p>
+        <div class='details'>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             
-        </table>
-        <hr>
-        <div>
+        </div>
+        <div class="align-self-center">
             <a>
-            <img src="static/images/{{nombre_foto}}" style="width:400px" class=" center-block">
+            <img src="static/images/{{nombre_foto}}" style="width:220px" class=" center-block">
+            </a>
+            <a>
+            <img src="static/images/{{nombre_foto}}" style="width:220px" class=" center-block">
+            </a>
+            <a>
+            <img src="static/images/{{nombre_foto}}" style="width:220px" class=" center-block">
             </a> 
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Antes</th>
+                    <th>Durante</th>
+                    <th>Despues</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
         </div>
     </body>
     </html>
