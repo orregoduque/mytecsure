@@ -32,7 +32,7 @@ class NotaForm(forms.ModelForm):
 class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
-        fields = ( 'latitud', 'longitud','lugar', 'actividad','tipo_arbol','ciudad','numero','nombre_comun','nombre_cientifico','familia','altura','dap','diametro_copa','comuna','barrio','recomendaciones','image')
+        fields = ( 'latitud', 'longitud','lugar', 'actividad','tipo_arbol','ciudad','nombre_comun','nombre_cientifico','familia','altura','dap','diametro_copa','comuna','barrio','recomendaciones','image')
         #fields = ('student', 'lugar', 'actividad','tipo_arbol',)
 
     def __init__(self, *args, **kwargs):
@@ -43,7 +43,7 @@ class EventoForm(forms.ModelForm):
             self.fields['lugar'].label = "Ubicacion"
             self.fields['ciudad'].label = "Ciudad"
             self.fields['tipo_arbol'].label = "Tipo de Arbol"
-            self.fields['numero'].label = "Numero"
+            #self.fields['numero'].label = "Numero"
             self.fields['nombre_comun'].label = "Nombre Comun"
             self.fields['nombre_cientifico'].label = "Nombre Cientifico"
             self.fields['familia'].label = "Familia"
