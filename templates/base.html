@@ -34,12 +34,12 @@
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
                     {% if user.is_director %}
-                      <li><a href="{% url 'appointment:director-eventos' %}"><button class="btn btn-primary btn-lg" style="color: rgb(255, 255, 255)"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Eventos</button></a></li>
+                      <li><a href="{% url 'appointment:director-eventos' %}"><button class="btn btn-primary btn-lg" style="color: rgb(255, 255, 255)"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Registros</button></a></li>
                       <li><a href="http://127.0.0.1:8000/admin/"><button class="btn btn-primary btn-lg" style="color: rgb(255, 255, 255)" ><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Admin</button></a></li>
                       <li><a href="{% url 'account:logout' %}" ><button class="btn btn-warning btn-lg" style="color: rgb(255, 255, 255)" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</button></a></li> 
                     {% endif %}
                     {% if user.is_student %}
-                      <li><a href="{% url 'appointment:student-eventos' %}"><button class="btn btn-lg btn-primary" style="color: rgb(255, 255, 255)"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Eventos</button></a></li>
+                      <li><a href="{% url 'appointment:student-eventos' %}"><button class="btn btn-lg btn-primary" style="color: rgb(255, 255, 255)"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Registros</button></a></li>
     						      <li><a href="{% url 'account:logout' %}" ><button class="btn btn-warning btn-lg" style="color: rgb(255, 255, 255)" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</button></a></li> 
                     {% endif %}
                     {% else %}

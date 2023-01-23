@@ -218,7 +218,7 @@ def EventoCreateView(request):
             #Loop through each record
             for record in records:
                 field_as_int = int(record.numero)
-                print(field_as_int)
+                #print(field_as_int)
                 if (field_as_int >= numero_max):
                     numero_max = field_as_int
             evento.numero = str(numero_max + 1)
@@ -263,7 +263,7 @@ class EventosForAstudentView(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         estudiante = self.request.user.id
-        return Evento.objects.filter(student_id=estudiante).order_by('date')
+        return Evento.objects.filter(student_id=estudiante).order_by('-date')
 
 class EventosForAdirectorView(LoginRequiredMixin, ListView):
     login_url = '/login/'
@@ -387,7 +387,7 @@ class EventoPDF(View):
             forma = str(forma)
             check_box = request.POST.get('ingreso', None)
             nombre_foto = 'arbol.jpeg'
-            print(check_box)
+            #print(check_box)
             if (check_box != 'None'):
                 eventos = Evento.objects.filter(numero=check_box)
                 nombre_foto = Evento.objects.get(numero=check_box).image
@@ -401,8 +401,28 @@ class EventoPDF(View):
             context = {
                 'nombre_foto' : nombre_foto,
             }
-        pdf = render_to_pdf('appointment/pdf_evento.html', context)
-        return HttpResponse(pdf, content_type='application/pdf')
+        #pdf = render_to_pdf('appointment/pdf_evento.html', context)
+
+        # create csc instead of pdf of selected event
+        response = HttpResponse(content_type='text/csv')
+        fecha =  str(datetime.datetime.now())
+        response['Content-Disposition'] = 'attachment; filename="datos.csv"'
+        writer = csv.writer(response)
+        writer.writerow([fecha,])
+        writer.writerow(['Lista_de_eventos:',])
+        writer.writerow([' ',])
+        writer.writerow(['date', 'actividad', 'lugar', 'ciudad', 'tipo_arbol', 'numero', 'nombre_comun', 'nombre_cientifico', 'familia', 'altura', 'dap', 'diametro_copa', 'comuna', 'barrio', 'recomendaciones', 'latitud', 'longitud',])
+        writer.writerow([' ',])
+
+        if (check_box != 'None'):
+                eventos = Evento.objects.filter(numero=check_box)
+                for i in range(len(eventos)):
+                    writer.writerow([eventos[i]])
+                writer.writerow([' ',])
+        return response
+        #
+
+        #return HttpResponse(pdf, content_type='application/pdf')
 
 #############################################################################################
 #URGENCIA
