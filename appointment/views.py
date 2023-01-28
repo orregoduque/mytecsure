@@ -211,8 +211,6 @@ def EventoCreateView(request):
             evento.recomendaciones = recomendaciones
             evento.latitud = latitud
             evento.longitud = longitud
-            if len(request.FILES) != 0:
-                evento.image = imagen            
             numero_max = 0
             records = Evento.objects.all()
             #Loop through each record
@@ -222,6 +220,9 @@ def EventoCreateView(request):
                 if (field_as_int >= numero_max):
                     numero_max = field_as_int
             evento.numero = str(numero_max + 1)
+            if len(request.FILES) != 0:
+                evento.image = imagen
+                evento.image.name = str(evento.numero)+'.jpg'
             evento.save()
             if request.user == "D":
                 return redirect('appointment:director-eventos')
