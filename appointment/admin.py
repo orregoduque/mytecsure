@@ -22,8 +22,9 @@ admin.site.site_title = 'ARBOLADO Dashboard'
 #admin.site.register(Nota,FilterNota)
 
 class FilterEvento(admin.ModelAdmin):
-    #list_display =('student','date', 'lugar', 'actividad','director')
-    list_display =('student','date', 'lugar', 'actividad','numero')
-    list_filter = ('student' , 'date','lugar')
-    #list_filter = ('student' , 'date','lugar','director')
+    #list_display =('student','date', 'lugar', 'actividad','numero')
+    #list_filter = ('student' , 'date','lugar')
+
+    list_display =('student','date','numero')
+    list_filter = ('student' , 'date')
 admin.site.register(Evento,FilterEvento)

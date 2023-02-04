@@ -172,7 +172,39 @@ def EventoCreateView(request):
     if request.method == 'POST':
         form = EventoForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get("student")
+            codigo = form.cleaned_data.get("codigo")
+            version = form.cleaned_data.get("version")
+            numero_concepto = form.cleaned_data.get("numero_concepto")
+            direccion = form.cleaned_data.get("direccion")
+            numero = form.cleaned_data.get("numero")
+            localidad = form.cleaned_data.get("localidad")
+            codigo_sigau = form.cleaned_data.get("codigo_sigau")
+            no_arbol = form.cleaned_data.get("no_arbol")
+            especie_vegetal = form.cleaned_data.get("especie_vegetal")
+            tipo_manejo = form.cleaned_data.get("tipo_manejo")
+            presencia_avifauna = form.cleaned_data.get("presencia_avifauna")
+            manejo = form.cleaned_data.get("manejo")
+            observaciones = form.cleaned_data.get("observaciones")
+            al_primer_fuste = form.cleaned_data.get("al_primer_fuste")
+            al_segundo_fuste = form.cleaned_data.get("al_segundo_fuste")
+            al_tercer_fuste = form.cleaned_data.get("al_tercer_fuste")
+            al_cuarto_fuste = form.cleaned_data.get("al_cuarto_fuste")
+            pe_primer_fuste = form.cleaned_data.get("pe_primer_fuste")
+            pe_segundo_fuste = form.cleaned_data.get("pe_segundo_fuste")
+            pe_tercer_fuste = form.cleaned_data.get("pe_tercer_fuste")
+            pe_cuarto_fuste = form.cleaned_data.get("pe_cuarto_fuste")
+            big_observaciones = form.cleaned_data.get("big_observaciones")
+            fecha_medicion = form.cleaned_data.get("fecha_medicion")
+            fecha_trabajo = form.cleaned_data.get("fecha_trabajo")
+            fecha_inicio = form.cleaned_data.get("fecha_inicio")
+            fecha_destoconado = form.cleaned_data.get("fecha_destoconado")
+            fecha_recoleccion = form.cleaned_data.get("fecha_recoleccion")
+            valor_intervencion = form.cleaned_data.get("valor_intervencion")
+            latitud = form.cleaned_data.get("latitud")
+            longitud = form.cleaned_data.get("longitud")
+
+
+            """ username = form.cleaned_data.get("student")
             destino = form.cleaned_data.get("lugar")
             arbol = form.cleaned_data.get("tipo_arbol")
             ciudad = form.cleaned_data.get("ciudad")
@@ -187,14 +219,67 @@ def EventoCreateView(request):
             barrio = form.cleaned_data.get("barrio")
             recomendaciones = form.cleaned_data.get("recomendaciones")
             latitud = form.cleaned_data.get("latitud")
-            longitud = form.cleaned_data.get("longitud")
+            longitud = form.cleaned_data.get("longitud") """
 
             if len(request.FILES) != 0:
                 imagen = request.FILES["image"]
-            
+        
             evento = form.save(commit=False)
             evento.student = request.user
-            #evento.director = request.user
+            evento.codigo = codigo
+            evento.date = datetime.datetime.now()
+            evento.version = version
+            evento.numero_concepto = numero_concepto
+            evento.direccion = direccion
+            evento.localidad = localidad
+            evento.codigo_sigau = codigo_sigau
+            evento.no_arbol = no_arbol
+            evento.especie_vegetal = especie_vegetal
+            evento.tipo_manejo = tipo_manejo
+            evento.presencia_avifauna = presencia_avifauna
+            evento.manejo = manejo
+            evento.observaciones = observaciones
+            evento.al_primer_fuste = al_primer_fuste
+            evento.al_segundo_fuste = al_segundo_fuste
+            evento.al_tercer_fuste = al_tercer_fuste
+            evento.al_cuarto_fuste = al_cuarto_fuste
+            evento.pe_primer_fuste = pe_primer_fuste
+            evento.pe_segundo_fuste = pe_segundo_fuste
+            evento.pe_tercer_fuste = pe_tercer_fuste
+            evento.pe_cuarto_fuste = pe_cuarto_fuste
+            evento.big_observaciones = big_observaciones
+            evento.fecha_medicion = fecha_medicion
+            evento.fecha_trabajo = fecha_trabajo
+            evento.fecha_inicio = fecha_inicio
+            evento.fecha_destoconado = fecha_destoconado
+            evento.fecha_recoleccion = fecha_recoleccion
+            evento.valor_intervencion = valor_intervencion
+            evento.latitud = latitud
+            evento.longitud = longitud
+
+            numero_max = 0
+            records = Evento.objects.all()
+            #Loop through each record
+            for record in records:
+                field_as_int = int(record.numero)
+                #print(field_as_int)
+                if (field_as_int >= numero_max):
+                    numero_max = field_as_int
+            evento.numero = str(numero_max + 1)
+            if len(request.FILES) != 0:
+                evento.image = imagen
+                evento.image.name = str(evento.numero)+'.jpg'
+            evento.save()
+            if request.user == "D":
+                return redirect('appointment:director-eventos')
+            else:
+                return redirect('appointment:student-eventos')
+
+
+
+
+            """ evento = form.save(commit=False)
+            evento.student = request.user
             evento.date = datetime.datetime.now()
             evento.ciudad = ciudad
             evento.tipo_arbol = arbol
@@ -227,7 +312,7 @@ def EventoCreateView(request):
             if request.user == "D":
                 return redirect('appointment:director-eventos')
             else:
-                return redirect('appointment:student-eventos')
+                return redirect('appointment:student-eventos') """
     else:
         form = EventoForm()
     return render(request, 'appointment/evento_create.html', {'form': form})
@@ -264,7 +349,7 @@ class EventosForAstudentView(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         estudiante = self.request.user.id
-        return Evento.objects.filter(student_id=estudiante).order_by('-date')
+        return Evento.objects.filter(student_id=estudiante).order_by('-numero')
 
 class EventosForAdirectorView(LoginRequiredMixin, ListView):
     login_url = '/login/'
@@ -272,7 +357,7 @@ class EventosForAdirectorView(LoginRequiredMixin, ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return Evento.objects.all().order_by('date')
+        return Evento.objects.all().order_by('numero')
 #############################################################################################
 
 #############################################################################################
