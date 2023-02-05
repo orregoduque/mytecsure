@@ -553,9 +553,17 @@ class ActividadPDF(View):
 #PDF EVENTOS
 class EventoPDF(View):
     def get(self, request, *args, **kwargs):
+        palabra = request.GET.get('value')
+        numero_lote = int(palabra)
+        registro = Evento.objects.filter(numero=numero_lote)
+        nombre_foto = ''
+        nombre_foto = Evento.objects.get(numero=numero_lote).image
+
         citas = Evento.objects.all().order_by('date')
         actividades = Evento.objects.all().order_by('-date')
         context = {
+            'registro' : registro,
+            'nombre_foto' : nombre_foto,
             'citas' : citas,
             'actividades' : actividades,
         }

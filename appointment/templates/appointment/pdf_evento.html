@@ -25,7 +25,7 @@
         <!-- Content for Static Frame 'header_frame' -->
         <div id="header_content">
             <a>
-            <img src="static/images/{{nombre_foto}}" style="width:150px">
+            <img src="static/images/{{imagen}}" style="width:150px">
             </a>   
         </div>
         <div >
@@ -72,14 +72,60 @@
                     <th>Actividad</th>
                     <th>Coordenadas</th>
                 </thead>
-                {% for obj in eventos %}
+                {% for obj in registro %}
                 <tr>
-                    <td>{{obj.student }}</td>
-                    <td>{{obj.date }}</td>
-                    <td>{{obj.tipo_arbol}}</td>
-                    <td>{{obj.numero}}</td>
-                    <td>{{obj.actividad}}</td>
-                    <td>{{obj.longitud}},{{obj.latitud}} </td>
+                <th>1</th>
+                <td>{{obj.codigo}} - {{obj.date}} - {{obj.numero}}</td>
+                </tr>
+
+                <tr>
+                <th>2</th>
+                <td>{{obj.version}} - {{obj.direccion}} - {{obj.codigo_sigau}}</td>
+                </tr>
+
+                <tr>
+                <th>3</th>
+                <td>{{obj.numero_concepto}} - {{obj.localidad}} - {{obj.no_arbol}}</td>
+                </tr>
+
+                <tr>
+                <th>4</th>
+                <td>{{obj.especie_vegetal}} - {{obj.tipo_manejo}} - {{obj.presencia_avifauna}}</td>
+                </tr>
+
+                <tr>
+                <th>5</th>
+                <td>{{obj.manejo}} - {{obj.observaciones}} - {{obj.al_primer_fuste}}</td>
+                </tr>
+
+                <tr>
+                <th>6</th>
+                <td>{{obj.al_segundo_fuste}} - {{obj.al_tercer_fuste}} - {{obj.al_cuarto_fuste}}</td>
+                </tr>
+
+                <tr>
+                <th>7</th>
+                <td>{{obj.pe_primer_fuste}} - {{obj.pe_segundo_fuste}} - {{obj.pe_tercer_fuste}}</td>
+                </tr>
+
+                <tr>
+                <th>8</th>
+                <td>{{obj.pe_cuarto_fuste}} - {{obj.big_observaciones}} - {{obj.fecha_medicion}}</td>
+                </tr>
+
+                <tr>
+                <th>9</th>
+                <td>{{obj.fecha_trabajo}} - {{obj.fecha_inicio}} - {{obj.fecha_destoconado}}</td>
+                </tr>
+
+                <tr>
+                <th>10</th>
+                <td>{{obj.fecha_recoleccion}} - {{obj.valor_intervencion}} - {{obj.latitud}}</td>
+                </tr>
+
+                <tr>
+                <th>10</th>
+                <td>{{obj.longitud}}</td>
                 </tr>
                 {% endfor %}
             </table>
