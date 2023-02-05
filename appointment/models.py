@@ -169,8 +169,8 @@ class Evento(models.Model):
         self.fecha_medicion,
         self.fecha_trabajo,
         self.fecha_inicio,
-        self.fecha_destoconado, 
+        self.fecha_destoconado,
         self.fecha_recoleccion,
         self.valor_intervencion,
-        self.latitud, 
+        self.latitud,
         self.longitud)

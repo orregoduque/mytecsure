@@ -20,7 +20,9 @@ urlpatterns = [
     path('pdf_actividad/', views.ActividadPDF.as_view(), name="pdf_actividad"),
     path('pdf_evento/', views.EventoPDF.as_view(), name="pdf_evento"),
     path("evento/create", views.EventoCreateView, name="evento-create"),
+    #path("evento/update/<int:pk>/", views.EventoUpdate, name="evento-update"),
     path("eventos/s/", views.EventosForAstudentView.as_view(), name="student-eventos"),
     path("eventos/d/", views.EventosForAdirectorView.as_view(), name="director-eventos"),
     path("urgencia/", views.UrgenciaForAdirectorView.as_view(), name="director-urgencia"),
+    path('evento/detail/', views.EventoDetailView, name='Evento-DetailView'),
 ]

@@ -33,22 +33,26 @@
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
                       <th>Fecha</th>
-                      <th>Ciudad</th>
-                      <th>Lugar</th>
-                      <th>Actividad</th>
-                      <th>Tipo Arbol</th>
+                      <th>Codigo</th>
                       <th>Numero</th>
+                      <th>Direccion</th>
+                      <th>Codigo Sigau</th>
+                      <th>Especie Vegetal</th>
+                      <th>Observaciones</th>
+                      <th>Valor Intervencion</th>
                     </tr>
                 </table>
                 {% for obj in object_list %}
                 <table class="table table-bordered table-hover ">
                     <tr>
                       <td><strong>{{ obj.date }}</strong> </th>
-                      <td>{{ obj.date }}</td>
-                      <td>{{ obj.date }}</td>
-                      <td>{{ obj.date }}</td>
-                      <td>{{ obj.date }}</td>
-                      <td>{{ obj.date }}</td>
+                      <td>{{ obj.codigo }}</td>
+                      <td><a href="{% url 'appointment:Evento-DetailView'%}?value={{ obj.numero }}">{{ obj.numero }}</a></td>
+                      <td>{{ obj.direccion }}</td>
+                      <td>{{ obj.codigo_sigau }}</td>
+                      <td>{{ obj.especie_vegetal }}</td>
+                      <td>{{ obj.observaciones }}</td>
+                      <td>{{ obj.valor_intervencion }}</td>
                     </tr>
                 </table>
                 {% endfor %}
@@ -102,24 +106,26 @@
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
                       <th>Fecha</th>
-                      <th>Usuario</th>
-                      <th>Ciudad</th>
-                      <th>Actividad</th>
-                      <th>Lugar</th>
-                      <th>Tipo Arbol</th>
+                      <th>Codigo</th>
                       <th>Numero</th>
+                      <th>Direccion</th>
+                      <th>Codigo Sigau</th>
+                      <th>Especie Vegetal</th>
+                      <th>Observaciones</th>
+                      <th>Valor Intervencion</th>
                     </tr>
                 </table>
                 {% for obj in object_list %}
                 <table class="table table-bordered table-hover">
                     <tr>
-                      <td><strong>{{ obj.date }}</strong> </td>
-                      <td>{{ obj.date }}</td>
-                      <td>{{ obj.date }}</td>
-                      <td>{{ obj.date }}</td>
-                      <td>{{ obj.date }}</td>
-                      <td>{{ obj.date }}</td>
-                      <td>{{ obj.date }}</td>
+                      <td><strong>{{ obj.date }}</strong> </th>
+                      <td>{{ obj.codigo }}</td>
+                      <td><a href="{% url 'appointment:Evento-DetailView'%}?value={{ obj.numero }}">{{ obj.numero }}</a></td>
+                      <td>{{ obj.direccion }}</td>
+                      <td>{{ obj.codigo_sigau }}</td>
+                      <td>{{ obj.especie_vegetal }}</td>
+                      <td>{{ obj.observaciones }}</td>
+                      <td>{{ obj.valor_intervencion }}</td>
                     </tr>
                 </table>
               {% endfor %}

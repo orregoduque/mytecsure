@@ -12,6 +12,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django import forms
 from django.core.paginator import Paginator
+from django.urls import reverse, reverse_lazy
 
 import csv
 import datetime
@@ -358,6 +359,105 @@ class EventosForAdirectorView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Evento.objects.all().order_by('numero')
+#############################################################################################
+
+#############################################################################################
+
+
+""" def EventoUpdate(request, pk):
+    instance = Evento.objects.get(id=pk)
+    form = EventoForm(request.POST or None, instance=instance)
+
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+
+    context = {
+        'form': form,
+        'instance': instance,
+    }
+
+    return render(request, 'evento_update.html', context) """
+
+
+
+
+def EventoDetailView(request,*args, **kwargs):
+    palabra = request.GET.get('value')
+    numero_lote = int(palabra)
+
+    detalle = Evento.objects.get(numero=numero_lote)
+
+    codigo = detalle.codigo
+    date = detalle.date
+    numero = detalle.numero
+    version = detalle.version
+    direccion = detalle.direccion
+    numero_concepto = detalle.numero_concepto
+    localidad = detalle.localidad
+    codigo_sigau = detalle.codigo_sigau
+    no_arbol = detalle.no_arbol
+    especie_vegetal = detalle.especie_vegetal
+    tipo_manejo = detalle.tipo_manejo
+    presencia_avifauna = detalle.presencia_avifauna
+    manejo = detalle.manejo
+    observaciones = detalle.observaciones
+    al_primer_fuste = detalle.al_primer_fuste
+    al_segundo_fuste = detalle.al_segundo_fuste
+    al_tercer_fuste = detalle.al_tercer_fuste
+    al_cuarto_fuste = detalle.al_cuarto_fuste
+    pe_primer_fuste = detalle.pe_primer_fuste
+    pe_segundo_fuste = detalle.pe_segundo_fuste
+    pe_tercer_fuste = detalle.pe_tercer_fuste
+    pe_cuarto_fuste = detalle.pe_cuarto_fuste
+    big_observaciones, = detalle.big_observaciones,
+    fecha_medicion = detalle.fecha_medicion
+    fecha_trabajo = detalle.fecha_trabajo
+    fecha_inicio = detalle.fecha_inicio
+    fecha_destoconado = detalle.fecha_destoconado
+    fecha_recoleccion = detalle.fecha_recoleccion
+    valor_intervencion = detalle.valor_intervencion
+    latitud = detalle.latitud
+    longitud = detalle.longitud
+
+
+    context = {
+        'codigo' : codigo,
+        'date' : date,
+        'numero' : numero,
+        'version' : version,
+        'direccion' : direccion,
+        'numero_concepto' : numero_concepto,
+        'localidad' : localidad,
+        'codigo_sigau' : codigo_sigau,
+        'no_arbol' : no_arbol,
+        'especie_vegetal' : especie_vegetal,
+        'tipo_manejo' : tipo_manejo,
+        'presencia_avifauna' : presencia_avifauna,
+        'manejo' : manejo,
+        'observaciones' : observaciones,
+        'al_primer_fuste' : al_primer_fuste,
+        'al_segundo_fuste' : al_segundo_fuste,
+        'al_tercer_fuste' : al_tercer_fuste,
+        'al_cuarto_fuste' : al_cuarto_fuste,
+        'pe_primer_fuste' : pe_primer_fuste,
+        'pe_segundo_fuste' : pe_segundo_fuste,
+        'pe_tercer_fuste' : pe_tercer_fuste,
+        'pe_cuarto_fuste' : pe_cuarto_fuste,
+        'big_observaciones' : big_observaciones,
+        'fecha_medicion' : fecha_medicion,
+        'fecha_trabajo' : fecha_trabajo,
+        'fecha_inicio' : fecha_inicio,
+        'fecha_destoconado' : fecha_destoconado,
+        'fecha_recoleccion' : fecha_recoleccion,
+        'valor_intervencion' : valor_intervencion,
+        'latitud' : latitud,
+        'longitud' : longitud,
+    }
+
+    return render(request, 'evento_detail.html', context)
+
+
 #############################################################################################
 
 #############################################################################################
