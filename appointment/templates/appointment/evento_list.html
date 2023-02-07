@@ -17,49 +17,33 @@
           <div class="col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 col-lg-6 col-lg-offset-3">
             <a href="{% url 'appointment:evento-create' %}"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo Registro</button></a>
           </Div>
-          <div class="col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 col-lg-6 col-lg-offset-3">
-            <Form action = "{% url 'appointment:pdf_evento'%}" method = "post">
-              {% csrf_token %}
-              <div class="input-div col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 col-lg-6 col-lg-offset-3">
-                  <label class="form-label" for="id_numer" ></label>
-                  <input type="number" class="form-control" name="ingreso" placeholder="Ingresar numero" aria-describedby="sizing-addon2">
-                  <button class="btn btn-primary btn-lg"> <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Crear CSV</button>
-              </div>
-            </Form>
-          </Div>
           <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-6 col-lg-offset-3">
             <ul class="list-group">
                 
-                <table class="table table-striped table-bordered table-hover">
-                    <tr>
-                      <th>Fecha</th>
-                      <th>Codigo</th>
-                      <th>Numero</th>
-                      <th>Direccion</th>
-                      <th>Codigo Sigau</th>
-                      <th>Especie Vegetal</th>
-                      <th>Observaciones</th>
-                      <th>Valor Intervencion</th>
-                      <th>PDF</th>
-                      <th>CSV</th>
-                    </tr>
-                </table>
-                {% for obj in object_list %}
-                <table class="table table-bordered table-hover ">
-                    <tr>
-                      <td><strong>{{ obj.date }}</strong> </th>
-                      <td>{{ obj.codigo }}</td>
-                      <td><a href="{% url 'appointment:Evento-DetailView'%}?value={{ obj.numero }}">{{ obj.numero }}</a></td>
-                      <td>{{ obj.direccion }}</td>
-                      <td>{{ obj.codigo_sigau }}</td>
-                      <td>{{ obj.especie_vegetal }}</td>
-                      <td>{{ obj.observaciones }}</td>
-                      <td>{{ obj.valor_intervencion }}</td>
-                      <td><a href="{% url 'appointment:pdf_evento'%}?value={{ obj.numero }}">Descargar</a></td>
-                      <td><a href="{% url 'appointment:pdf_evento'%}?value={{ obj.numero }}">Descargar</a></td>
-                    </tr>
-                </table>
-                {% endfor %}
+              <table class="table table-striped table-bordered table-hover">
+                <tr>
+                  <th>Fecha Creacion</th>
+                  <th>Codigo</th>
+                  <th>Numero</th>
+                  <th>Codigo Sigau</th>
+                  <th>Valor Intervencion</th>
+                  <th>PDF</th>
+                  <th>CSV</th>
+                </tr>
+            </table>
+            {% for obj in object_list %}
+            <table class="table table-bordered table-hover">
+                <tr>
+                  <td><strong>{{ obj.date }}</strong> </th>
+                  <td>{{ obj.codigo }}</td>
+                  <td><a href="{% url 'appointment:Evento-DetailView'%}?value={{ obj.numero }}">{{ obj.numero }}</a></td>
+                  <td>{{ obj.codigo_sigau }}</td>
+                  <td>{{ obj.valor_intervencion }}</td>
+                  <td><a href="{% url 'appointment:pdf_evento'%}?value={{ obj.numero }}">PDF</a></td>
+                  <td><a href="{% url 'appointment:csv_view'%}?value={{ obj.numero }}">CSV</a></td>
+                </tr>
+            </table>
+          {% endfor %}
             </ul>
             <div class="pagination">
               <span class="step-links">
@@ -91,7 +75,7 @@
             <br/>
           </div>
         </div>
-        <div class="col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 col-lg-6 col-lg-offset-3">
+        <!-- <div class="col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 col-lg-6 col-lg-offset-3">
               <a href="{% url 'appointment:csv_view'%}"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> Descargar CSV con todo</button></a>
         </div>
         <div class="col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 col-lg-6 col-lg-offset-3">
@@ -103,19 +87,16 @@
                   <button class="btn btn-primary btn-lg"> <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Crear CSV</button>
               </div>
             </Form>
-        </Div>
+        </Div> -->
         <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-6 col-lg-offset-3">
           <ul class="list-group">
 
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
-                      <th>Fecha</th>
+                      <th>Fecha Creacion</th>
                       <th>Codigo</th>
                       <th>Numero</th>
-                      <th>Direccion</th>
                       <th>Codigo Sigau</th>
-                      <th>Especie Vegetal</th>
-                      <th>Observaciones</th>
                       <th>Valor Intervencion</th>
                       <th>PDF</th>
                       <th>CSV</th>
@@ -127,13 +108,10 @@
                       <td><strong>{{ obj.date }}</strong> </th>
                       <td>{{ obj.codigo }}</td>
                       <td><a href="{% url 'appointment:Evento-DetailView'%}?value={{ obj.numero }}">{{ obj.numero }}</a></td>
-                      <td>{{ obj.direccion }}</td>
                       <td>{{ obj.codigo_sigau }}</td>
-                      <td>{{ obj.especie_vegetal }}</td>
-                      <td>{{ obj.observaciones }}</td>
                       <td>{{ obj.valor_intervencion }}</td>
-                      <td><a href="{% url 'appointment:pdf_evento'%}?value={{ obj.numero }}">Descargar</a></td>
-                      <td><a href="{% url 'appointment:pdf_evento'%}?value={{ obj.numero }}">Descargar</a></td>
+                      <td><a href="{% url 'appointment:pdf_evento'%}?value={{ obj.numero }}">PDF</a></td>
+                      <td><a href="{% url 'appointment:csv_view'%}?value={{ obj.numero }}">CSV</a></td>
                     </tr>
                 </table>
               {% endfor %}

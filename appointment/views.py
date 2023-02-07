@@ -463,6 +463,9 @@ def EventoDetailView(request,*args, **kwargs):
 #############################################################################################
 #CSV FILE
 def some_view(request):
+    palabra = request.GET.get('value')
+    numero_lote = int(palabra)
+    registro = Evento.objects.filter(numero=numero_lote)
     response = HttpResponse(content_type='text/csv')
     fecha =  str(datetime.datetime.now())
     #fecha = fecha + '.csv'
@@ -472,13 +475,18 @@ def some_view(request):
     writer.writerow([fecha,])
     writer.writerow(['Lista_de_eventos:',])
     writer.writerow([' ',])
-    writer.writerow(['date', 'actividad', 'lugar', 'ciudad', 'tipo_arbol', 'numero', 'nombre_comun', 'nombre_cientifico', 'familia', 'altura', 'dap', 'diametro_copa', 'comuna', 'barrio', 'recomendaciones', 'latitud', 'longitud',])
+    writer.writerow(['codigo', 'date', 'numero', 'version', 'direccion', 'numero_concepto', 'localidad', 'codigo_sigau', 'no_arbol', 'especie_vegetal', 'tipo_manejo', 'presencia_avifauna', 'manejo', 'observaciones', 'al_primer_fuste', 'al_segundo_fuste', 'al_tercer_fuste','al_cuarto_fuste','pe_primer_fuste','pe_segundo_fuste','pe_tercer_fuste','pe_cuarto_fuste','big_observaciones','fecha_medicion','fecha_trabajo','fecha_inicio','fecha_destoconado','fecha_recoleccion','valor_intervencion','latitud','longitud'])
     writer.writerow([' ',])
-    eventos = Evento.objects.all().order_by('date')
+    cantidad = len(registro)
+    for i in range(len(registro)):
+        writer.writerow([registro[i]])
+    writer.writerow([' ',])
+
+    """ eventos = Evento.objects.all().order_by('date')
     cantidad = len(eventos)
     for i in range(len(eventos)):
         writer.writerow([eventos[i]])
-    writer.writerow([' ',])
+    writer.writerow([' ',]) """
     return response
 #############################################################################################
 

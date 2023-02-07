@@ -30,8 +30,11 @@
               <span class="navbar-toggler-icon"></span>
               </button>
             </div>
-              <div class="collapse navbar-collapse col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 col-lg-6 col-lg-offset-3" id="navbarSupportedContent">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </nav>
+    </div>
+    <div class="col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 col-lg-6 col-lg-offset-3">
+                <div class="container-fluid col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 col-lg-6 col-lg-offset-3">
+                  <ul class="navbar navbar-expand-lg ">
                     {% if user.is_authenticated %}
                     {% if user.is_director %}
                       <li><a href="{% url 'appointment:director-eventos' %}"><button class="btn btn-primary btn-lg" style="color: rgb(255, 255, 255)"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Registros</button></a></li>
@@ -47,9 +50,9 @@
     						    {% endif %}
                   </ul>
               </div>
+      </div>
           
-      </nav>
-  </div>
+
     <div class="container mycontent">
           {% block content %}
           {% endblock %}
