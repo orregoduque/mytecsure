@@ -33,7 +33,7 @@ class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
         #fields = ( 'latitud', 'longitud','lugar', 'actividad','tipo_arbol','ciudad','nombre_comun','nombre_cientifico','familia','altura','dap','diametro_copa','comuna','barrio','recomendaciones','image')
-        fields = ( 'latitud', 'longitud','codigo', 'version','numero_concepto', 'direccion','localidad','codigo_sigau','no_arbol','especie_vegetal','tipo_manejo','presencia_avifauna','manejo','observaciones','al_primer_fuste','al_segundo_fuste','al_tercer_fuste','al_cuarto_fuste','pe_primer_fuste','pe_segundo_fuste','pe_tercer_fuste','pe_cuarto_fuste','big_observaciones','fecha_medicion','fecha_trabajo','fecha_inicio','fecha_destoconado','fecha_recoleccion','valor_intervencion','image')
+        fields = ( 'latitud', 'longitud','codigo', 'version','numero_concepto', 'direccion','localidad','codigo_sigau','no_arbol','especie_vegetal','tipo_manejo','presencia_avifauna','manejo','observaciones','al_primer_fuste','al_segundo_fuste','al_tercer_fuste','al_cuarto_fuste','pe_primer_fuste','pe_segundo_fuste','pe_tercer_fuste','pe_cuarto_fuste','big_observaciones','fecha_medicion','fecha_trabajo','fecha_inicio','fecha_destoconado','fecha_recoleccion','valor_intervencion','image','image_2','image_3')
 
     def __init__(self, *args, **kwargs):
         super(EventoForm, self).__init__(*args, **kwargs)
@@ -84,4 +84,6 @@ class EventoForm(forms.ModelForm):
             self.fields['fecha_destoconado'].label = "Fecha Destoconado"
             self.fields['fecha_recoleccion'].label = "Fecha Recoleccion"
             self.fields['valor_intervencion'].label = "Valor Intervencion"
-            self.fields['image'].label = "Imagen"
+            self.fields['image'].label = "Imagen Antes"
+            self.fields['image_2'].label = "Imagen Durante"
+            self.fields['image_3'].label = "Imagen Despues"

@@ -88,6 +88,8 @@ class Evento(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student_idd', default='student')
     date = models.DateField()
     image = models.ImageField( null=True , blank= True)
+    image_2 = models.ImageField( null=True , blank= True)
+    image_3 = models.ImageField( null=True , blank= True)
     numero = models.CharField(max_length=20, blank=True)
     codigo = models.CharField(max_length=100, blank=True)
     version = models.CharField(max_length=100, blank=True)

@@ -224,6 +224,8 @@ def EventoCreateView(request):
 
             if len(request.FILES) != 0:
                 imagen = request.FILES["image"]
+                imagen_2 = request.FILES["image_2"]
+                imagen_3 = request.FILES["image_3"]
         
             evento = form.save(commit=False)
             evento.student = request.user
@@ -269,7 +271,11 @@ def EventoCreateView(request):
             evento.numero = str(numero_max + 1)
             if len(request.FILES) != 0:
                 evento.image = imagen
-                evento.image.name = str(evento.numero)+'.jpg'
+                evento.image_2 = imagen_2
+                evento.image_3 = imagen_3
+                evento.image.name = str(evento.numero)+ '_antes' + '.jpg'
+                evento.image_2.name = str(evento.numero)+ '_durante' + '.jpg'
+                evento.image_3.name = str(evento.numero)+ '_despues' + '.jpg'
             evento.save()
             if request.user == "D":
                 return redirect('appointment:director-eventos')
@@ -565,13 +571,19 @@ class EventoPDF(View):
         numero_lote = int(palabra)
         registro = Evento.objects.filter(numero=numero_lote)
         nombre_foto = ''
+        nombre_foto_2 = ''
+        nombre_foto_3 = ''
         nombre_foto = Evento.objects.get(numero=numero_lote).image
+        nombre_foto_2 = Evento.objects.get(numero=numero_lote).image_2
+        nombre_foto_3 = Evento.objects.get(numero=numero_lote).image_3
 
         citas = Evento.objects.all().order_by('date')
         actividades = Evento.objects.all().order_by('-date')
         context = {
             'registro' : registro,
             'nombre_foto' : nombre_foto,
+            'nombre_foto_2' : nombre_foto_2,
+            'nombre_foto_3' : nombre_foto_3,
             'citas' : citas,
             'actividades' : actividades,
         }
