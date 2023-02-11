@@ -25,7 +25,7 @@
         <!-- Content for Static Frame 'header_frame' -->
         <div id="header_content">
             <a>
-            <img src="static/images/{{nombre_foto}}" style="width:150px">
+            <img src="static/images/logo.jpg" style="width:150px">
             </a>   
         </div>
         <div >
@@ -38,8 +38,6 @@
             </p>
             <p align="center">
                 <strong>GENERACION DE REPORTE</strong>
-                <br/>
-                <br/>
                 <br/>
                 <br/>
                 <br/>
@@ -64,73 +62,81 @@
         <hr>
         <div class="row">
             <table>
-                <thead>
-                    <th>Usuario</th>
-                    <th>Fecha</th>
-                    <th>Arbol</th>
-                    <th>Numero</th>
-                    <th>Actividad</th>
-                    <th>Coordenadas</th>
-                </thead>
+                
             </table>
             <table>
                 {% for obj in registro %}
                 <tr>
-                <th>1</th>
-                <td>{{obj.codigo}} - {{obj.date}} - {{obj.numero}}</td>
+                <td style="text-align:left">codigo      - fecha             - numero</th>
+                <td style="text-align:left">version     - direccion         - codigo_sigau</td>
                 </tr>
-
-                <tr>
-                <th>2</th>
-                <td>{{obj.version}} - {{obj.direccion}} - {{obj.codigo_sigau}}</td>
-                </tr>
-
-                <tr>
-                <th>3</th>
-                <td>{{obj.numero_concepto}} - {{obj.localidad}} - {{obj.no_arbol}}</td>
-                </tr>
-
-                <tr>
-                <th>4</th>
-                <td>{{obj.especie_vegetal}} - {{obj.tipo_manejo}} - {{obj.presencia_avifauna}}</td>
-                </tr>
-
-                <tr>
-                <th>5</th>
-                <td>{{obj.manejo}} - {{obj.observaciones}} - {{obj.al_primer_fuste}}</td>
-                </tr>
-
-                <tr>
-                <th>6</th>
-                <td>{{obj.al_segundo_fuste}} - {{obj.al_tercer_fuste}} - {{obj.al_cuarto_fuste}}</td>
-                </tr>
-
-                <tr>
-                <th>7</th>
-                <td>{{obj.pe_primer_fuste}} - {{obj.pe_segundo_fuste}} - {{obj.pe_tercer_fuste}}</td>
-                </tr>
-
-                <tr>
-                <th>8</th>
-                <td>{{obj.pe_cuarto_fuste}} - {{obj.big_observaciones}} - {{obj.fecha_medicion}}</td>
-                </tr>
-
-                <tr>
-                <th>9</th>
-                <td>{{obj.fecha_trabajo}} - {{obj.fecha_inicio}} - {{obj.fecha_destoconado}}</td>
-                </tr>
-
-                <tr>
-                <th>10</th>
-                <td>{{obj.fecha_recoleccion}} - {{obj.valor_intervencion}} - {{obj.latitud}}</td>
-                </tr>
-
-                <tr>
-                <th>10</th>
-                <td>{{obj.longitud}}</td>
-                </tr>
-                {% endfor %}
             </table>
+            <table>
+                <tr>
+                <td style="text-align:left">{{obj.codigo}}       - {{obj.date}}       - {{obj.numero}}</th>
+                <td style="text-align:left">{{obj.version}}      - {{obj.direccion}}  - {{obj.codigo_sigau}}</td>
+                </tr>
+            </table>
+            <hr>
+            <table>
+                <tr>
+                <td style="text-align:left">numero_concepto - localidad - no_arbol </th>
+                <td style="text-align:left">especie_vegetal - tipo_manejo - presencia_avifauna</td>
+                </tr>
+            </table>
+            
+            <table>   
+                <tr>
+                <td style="text-align:left">{{obj.numero_concepto}} - {{obj.localidad}} - {{obj.no_arbol}}</th>
+                <td style="text-align:left">{{obj.especie_vegetal}} - {{obj.tipo_manejo}} - {{obj.presencia_avifauna}}</td>
+                </tr>
+            </table>
+            <hr>
+            <table>  
+                <tr>
+                <td style="text-align:left">manejo - observaciones - al_primer_fuste</th>
+                <td style="text-align:left">al_segundo_fuste - al_tercer_fuste - al_cuarto_fuste</td>
+                </tr>
+            </table>
+            
+            <table>  
+                <tr>
+                <td style="text-align:left">{{obj.manejo}} - {{obj.observaciones}} - {{obj.al_primer_fuste}}</th>
+                <td style="text-align:left">{{obj.al_segundo_fuste}} - {{obj.al_tercer_fuste}} - {{obj.al_cuarto_fuste}}</td>
+                </tr>
+            </table>
+            <hr>
+            <table>  
+                <tr>
+                <td style="text-align:left">pe_primer_fuste - pe_segundo_fuste - pe_tercer_fuste</th>
+                <td style="text-align:left">pe_cuarto_fuste - big_observaciones - fecha_medicion</td>
+                </tr>
+            </table>
+            
+            <table> 
+                <tr>
+                <td style="text-align:left">{{obj.pe_primer_fuste}} - {{obj.pe_segundo_fuste}} - {{obj.pe_tercer_fuste}}</th>
+                <td style="text-align:left">{{obj.pe_cuarto_fuste}} - {{obj.big_observaciones}} - {{obj.fecha_medicion}}</td>
+                </tr>
+            </table>
+            <hr>
+            <table> 
+                <tr>
+                <td style="text-align:left">fecha_trabajo - fecha_inicio - fecha_destoconado</th>
+                <td style="text-align:left">fecha_recoleccion - valor_intervencion - latitud - longitud</td>
+                </tr>
+            </table>
+            
+            <table> 
+                <tr>
+                <td style="text-align:left">{{obj.fecha_trabajo}} - {{obj.fecha_inicio}} - {{obj.fecha_destoconado}}</th>
+                <td style="text-align:left">{{obj.fecha_recoleccion}} - {{obj.valor_intervencion}} - {{obj.latitud}} - {{obj.longitud}} </td>
+                </tr>
+            </table>
+            
+        
+                {% endfor %}
+            
         </div>
         <hr>
         <p>
